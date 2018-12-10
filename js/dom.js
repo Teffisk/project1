@@ -29,6 +29,19 @@ let buyAvocadoButton = document.querySelector('#buy-more-avocado-button').addEve
 let buyTortillasButton = document.querySelector('#buy-more-tortillas-button').addEventListener('click', buyMoreTortillas);
 let buySalsaButton = document.querySelector('#buy-more-salsa-button').addEventListener('click', buyMoreSalsa);
 
+//Show the cost per pound and servings per pound of each ingredient
+let displayChickenCost = document.querySelector('#chicken-cost').textContent = chickenCost;
+let displaySteakCost = document.querySelector('#steak-cost').textContent = steakCost;
+let displayAvocadoCost = document.querySelector('#avocado-cost').textContent = avocadoCost;
+let displayTortillaCost = document.querySelector('#tortilla-cost').textContent = tortillaCost;
+let displaysalsaCost = document.querySelector('#salsa-cost').textContent = salsaCost;
+
+//Show the serving per pound of each ingredient
+let displayChickenQty = document.querySelector('#chicken-qty').textContent = chickenPack;
+let displaySteakQty = document.querySelector('#steak-qty').textContent = steakPack;
+let displayAvocadoQty = document.querySelector('#avocado-qty').textContent = avocadoPack;
+let displayTortillaQty = document.querySelector('#tortilla-qty').textContent = tortillaPack;
+let displaySalsaQty = document.querySelector('#salsa-qty').textContent = salsaPack;
 
 function updateTheDom() {
 	displayTotalOrders = document.querySelector('#total-orders').textContent = totalOrders;
@@ -46,4 +59,9 @@ function updateTheDom() {
 	displaySalsaInv = document.querySelector('#salsa-inv').textContent = salsaInv;
 	displayReputation = document.querySelector('#reputation').textContent = reputation;
 	displayPassersby = document.querySelector('#total-passersby').textContent = passersby;
+	displayChickenQty = document.querySelector('#chicken-qty').textContent = chickenPack;
+	displaySteakQty = document.querySelector('#steak-qty').textContent = steakPack;
+	displayAvocadoQty = document.querySelector('#avocado-qty').textContent = avocadoPack;
+	displayTortillaQty = document.querySelector('#tortilla-qty').textContent = tortillaPack;
+	displaySalsaQty = document.querySelector('#salsa-qty').textContent = salsaPack;
 }

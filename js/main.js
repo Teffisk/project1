@@ -1,13 +1,6 @@
 console.log("js is running");
 startNewGame();
 
-//These are just to test before I add buttons
-buyMoreChicken();
-buyMoreSteak();
-buyMoreAvocado();
-buyMoreTortillas();
-buyMoreSalsa();
-
 function customersStart(){
 	//Customers walkby every three seconds
 	setInterval(newPasserby, 3000);
@@ -35,7 +28,7 @@ function startNewGame() {
 	chanceToBuy = (reputation/10);
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
-	setTimeout(customersStart, 100);
+	setTimeout(customersStart, 5000);
 }
 
 //A setInterval function that spanws customers at a set frequency. This frequency can be adjusted by your reputation and ads.
@@ -80,8 +73,8 @@ function whichTaco(){
 	console.log(x);
 	if (x < .4) {
 		console.log("I'd like one chicken taco");
-		if (chickenInv == 0) {
-			console.log("Aw, bummer, you are out of chicken. I'm leaving");
+		if (chickenInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
+			console.log("Aw, bummer, you are out of chicken tacos. I'm leaving");
 			//Reduce Reputation
 			reputation = reputation - 3;
 			updateTheDom();
@@ -92,8 +85,8 @@ function whichTaco(){
 		reputation++;
 	} else if (x > .8) {
 		console.log("I'd like one avocado taco");
-		if (avocadoInv == 0) {
-			console.log("Aw, bummer, you are out of avocado. I'm leaving");
+		if (avocadoInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
+			console.log("Aw, bummer, you are out of avocado tacos. I'm leaving");
 			//Reduce reputation
 			reputation = reputation - 3;
 			updateTheDom();
@@ -104,8 +97,8 @@ function whichTaco(){
 		reputation++;
 	} else {
 		console.log("I'd like one steak taco");
-		if (steakInv == 0) {
-			console.log("Aw, bummer, you are out of steak. I'm leaving");
+		if (steakInv <= 0 || salsaInv <= 0 || tortillaInv <= 0) {
+			console.log("Aw, bummer, you are out of steak tacos. I'm leaving");
 			//Reduce reputation
 			reputation = reputation - 3;
 			updateTheDom();
