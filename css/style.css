@@ -1,18 +1,64 @@
 h1 {
 	color: blue;
+	text-align: center;
+	padding: 20px 0 10px 0;
+}
+
+div {
+	margin: 0;
+	padding: 0;
+}
+
+#taco-truck-scene {
+	background: #eee;
+	border-top: 5px solid black;
+	border-right: 5px solid black;
+	border-left: 5px solid black;
+	height: 400px;
+	width: 800px;
+	margin: 0 auto;
+}
+
+.controls-container {
+	text-align: center;
+	margin: 0 auto;
+	height: auto;
+	width: 800px;
+	background: #eee;
+	border: 5px solid black;
 }
 
 .prices {
+	text-align: center;
+	width: 200px;
+	margin: 0;
 	display: inline-block;
 	border: 2px solid blue;
 }
 
 .customer-orders {
+/*	height: 200px;*/
+	width: 200px;
+	margin: 0;
 	display: inline-block;
 	border: 2px solid red;
 }
 
 .inventory {
+/*	height: 200px;*/
+	width: 300px;
+	margin: 0;
 	display: inline-block;
 	border: 2px solid green;
 }
+
+#place-orders {
+	border: 5px solid black;
+	background: #eee;
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+

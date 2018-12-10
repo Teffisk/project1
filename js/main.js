@@ -30,6 +30,7 @@ function startNewGame() {
 	chickenTacoPrice = 3;
 	steakTacoPrice = 3;
 	avocadoTacoPrice = 3;
+	passersby = 0;
 	reputation = 50;
 	chanceToBuy = (reputation/10);
 	updateTheDom();
@@ -44,6 +45,7 @@ function startNewGame() {
 // }
 
 function newPasserby(){
+	passersby++;
 	checkInv();
 	console.log("I'm just walking by");
 	setTimeout(toBuyOrNotToBuy, 2000)
