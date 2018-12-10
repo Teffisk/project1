@@ -1,3 +1,18 @@
 h1 {
 	color: blue;
 }
+
+.prices {
+	display: inline-block;
+	border: 2px solid blue;
+}
+
+.customer-orders {
+	display: inline-block;
+	border: 2px solid red;
+}
+
+.inventory {
+	display: inline-block;
+	border: 2px solid green;
+}

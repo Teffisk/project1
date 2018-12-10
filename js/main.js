@@ -1,9 +1,17 @@
 console.log("js is running");
 startNewGame();
-toBuyOrNotToBuy();
-setInterval(newPasserby, 3000);
-console.log(totalOrders)
 
+//These are just to test before I add buttons
+buyMoreChicken();
+buyMoreSteak();
+buyMoreAvocado();
+buyMoreTortillas();
+buyMoreSalsa();
+
+function customersStart(){
+	//Customers walkby every three seconds
+	setInterval(newPasserby, 3000);
+}
 
 function startNewGame() {
 	account = 100;
@@ -19,10 +27,14 @@ function startNewGame() {
 	chickenTacoPrice = 3;
 	steakTacoPrice = 3;
 	avocadoTacoPrice = 3;
-	chanceToBuy = .5;
 	chickenTacoPrice = 3;
 	steakTacoPrice = 3;
 	avocadoTacoPrice = 3;
+	reputation = 50;
+	chanceToBuy = (reputation/10);
+	updateTheDom();
+	//Give the player 10 secs to stock up before customers come by
+	setTimeout(customersStart, 100);
 }
 
 //A setInterval function that spanws customers at a set frequency. This frequency can be adjusted by your reputation and ads.
@@ -32,14 +44,22 @@ function startNewGame() {
 // }
 
 function newPasserby(){
+	checkInv();
 	console.log("I'm just walking by");
 	setTimeout(toBuyOrNotToBuy, 2000)
+}
+
+function checkInv() {
+	if(chickenInv == 0 || steakInv == 0 || avocadoInv == 0 || salsaInv == 0 || tortillaInv == 0) {
+		console.log("Uh oh, you don't have enough ingredients to make more tacos. You need to buy more inventory.")
+	} 
 }
 
 //Random chance of whether or not a customer will buy
 //Function of Math.random(0-1), greater than .5 means they will buy, then run the whichTaco function (later this point of purchase can be manipulated by reputation and advertising)
 function toBuyOrNotToBuy(){
 	let x = Math.random();
+	console.log("Chance to buy is: "+chanceToBuy)
 	if(x > (1-chanceToBuy)) {
 		console.log("I'm getting a taco")
 		whichTaco();
@@ -51,7 +71,6 @@ function toBuyOrNotToBuy(){
 	}
 }
 
-
 //Random assignment of what kind of taco they want
 //Function of Math.random (0-1) < .4 = steak, .4 - .8 = chicken, > .8 = avocado
 function whichTaco(){
@@ -59,16 +78,40 @@ function whichTaco(){
 	console.log(x);
 	if (x < .4) {
 		console.log("I'd like one chicken taco");
-		tacoChoice = "chicken";
+		if (chickenInv == 0) {
+			console.log("Aw, bummer, you are out of chicken. I'm leaving");
+			//Reduce Reputation
+			reputation = reputation - 3;
+			updateTheDom();
+			return;
+		}
 		placeChickenOrder();
+		//Increase reputation
+		reputation++;
 	} else if (x > .8) {
 		console.log("I'd like one avocado taco");
-		tacoChoice = "avocado";
+		if (avocadoInv == 0) {
+			console.log("Aw, bummer, you are out of avocado. I'm leaving");
+			//Reduce reputation
+			reputation = reputation - 3;
+			updateTheDom();
+			return;
+		}
 		placeAvocadoOrder();
+		//Increase reputation
+		reputation++;
 	} else {
 		console.log("I'd like one steak taco");
-		tacoChoice = "steak";
+		if (steakInv == 0) {
+			console.log("Aw, bummer, you are out of steak. I'm leaving");
+			//Reduce reputation
+			reputation = reputation - 3;
+			updateTheDom();
+			return;
+		}
 		placeSteakOrder();
+		//Increase reputation
+		reputation++;
 	}
 };
 
@@ -80,7 +123,6 @@ function placeChickenOrder() {
 	chickenOrders++;
 	//This line is redundate, need to clean up
 	totalOrders = chickenOrders + steakOrders + avocadoOrders;
-	displayStatus();
 	updateTheDom();
 }
 
@@ -92,7 +134,6 @@ function placeSteakOrder() {
 	steakOrders++;
 	//This line is redundate, need to clean up
 	totalOrders = chickenOrders + steakOrders + avocadoOrders;
-	displayStatus();
 	updateTheDom();
 }
 
@@ -104,21 +145,8 @@ function placeAvocadoOrder() {
 	avocadoOrders++;
 	//This line is redundate, need to clean up
 	totalOrders = chickenOrders + steakOrders + avocadoOrders;
-	displayStatus();
 	updateTheDom();
 }
 
-function displayStatus(){
-	console.log("account: $"+account);
-	console.log("Chicken Inv: "+chickenInv);
-	console.log("Steak Inv: "+steakInv);
-	console.log("Avocado Inv: "+avocadoInv);
-	console.log("Tortilla Inv: "+tortillaInv);
-	console.log("Salsa Inv: "+salsaInv);
-	console.log("Chicken Orders: "+chickenOrders);
-	console.log("Steak Orders: "+steakOrders);
-	console.log("Avocado Orders: "+avocadoOrders)
-	console.log("Total Orders: "+totalOrders)
-}
 
 
