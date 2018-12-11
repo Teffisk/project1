@@ -1,20 +1,25 @@
 console.log("js is running");
 // Create a div and set class
-var startSplash = document.createElement("div");
-startSplash.setAttribute("class", "start-button" );
-// Add some text
-startSplash.appendChild( document.createTextNode("Press start to begin!") );
-// Add it to the document body
-document.querySelector('#taco-truck-scene').appendChild(startSplash);
+addStartSplash();
 
-startSplash.addEventListener('click', startNewGame)
-
-function customersStart(){
-	//Customers walkby every three seconds
-	setInterval(newPasserby, 3000);
+function addStartSplash() {
+	var startSplash = document.createElement("div");
+	startSplash.setAttribute("class", "start-button" );
+	// Add some text
+	startSplash.appendChild( document.createTextNode("Welcome to Indy's Taco Truck. In order to run a successful food truck, you'll need to buy all of your ingredients to make yummy tacos for people to enjoy. The more tacos you sell, the more money you'll make and the better reputation you'll have. Make sure to stock up on ingredients before customers show up. Click here to begin!") );
+	// Add it to the document body
+	document.querySelector('#taco-truck-scene').appendChild(startSplash);
+	startSplash.addEventListener('click', startNewGame)
 }
 
+// var customersStart =
+// 	//Customers walkby every three seconds
+// 	setInterval(newPasserby, newPassersbyInterval);
+
+var customersStart;
+
 function startNewGame() {
+	document.querySelector(".start-button").remove();
 	account = 100;
 	chickenInv = 0;
 	steakInv = 0;
@@ -36,18 +41,48 @@ function startNewGame() {
 	chanceToBuy = (reputation/10);
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
-	setTimeout(customersStart, 5000);
+	// setTimeout(customersStart, newPassersbyInterval);
+	setTimeout(function(){
+		customersStart = setInterval(newPasserby, newPassersbyInterval);
+	}, newPassersbyInterval);
 	move();
 }
 
-//A setInterval function that spanws customers at a set frequency. This frequency can be adjusted by your reputation and ads.
-//A passerby will spawn every 3 seconds, and 2 seconds after that, they walk by the taco truck and the toBuyOrNotToBuy function runs
+function startNewDay() {
+	truckOpen = true;
+	document.querySelector(".end-of-day").remove();
+	updateTheDom();
+	//Give the player some secs to stock up before customers come by
+	setTimeout(function(){
+		customersStart = setInterval(newPasserby, newPassersbyInterval);
+	}, newPassersbyInterval);
+	move();
+	chanceToBuy = (reputation/10);
+	newPasserby();
+}
 
 function newPasserby(){
+	if (truckOpen == false){
+		clearTimeout(newCust);
+		clearInterval(customersStart);
+	} else {
 	passersby++;
 	checkInv();
 	console.log("I'm just walking by");
-	setTimeout(toBuyOrNotToBuy, 2000)
+	var newCust = setTimeout(toBuyOrNotToBuy, customerBuyDelay);
+	}
+}
+
+function endOfDay() {
+	console.log(truckOpen);
+	var eodSplash = document.createElement("div");
+	eodSplash.setAttribute("class", "end-of-day" );
+	// Add some text
+	eodSplash.appendChild( document.createTextNode("Congratulations, you survived the day! Make sure to stock up again to have an even more successful day tomorrow. Click here to start the next day.") );
+	// Add it to the document body
+	document.querySelector('#taco-truck-scene').appendChild(eodSplash);
+	eodSplash.addEventListener('click', startNewDay);
+	chanceToBuy = 0;
 }
 
 function checkInv() {
@@ -161,8 +196,9 @@ function move() {
   function progress() {
   	//When the bar is 100% filled, stop the timer
     if (width >= 100) {
-      clearInterval(tick);
-      //Run the day 1 over function
+    	truckOpen = false;
+    	clearInterval(tick);
+    	endOfDay();
     } else {
       width++; 
       bar.style.width = width + '%'; 

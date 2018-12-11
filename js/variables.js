@@ -1,5 +1,7 @@
 //Global variables
+let startSplash;
 let account;
+let truckOpen;
 let customer;
 let chanceToBuy;
 let newChanceToBuy = .6;
@@ -10,6 +12,8 @@ let avocadoOrders;
 let totalOrders;
 let reputation;
 let passersby;
+let customerBuyDelay = 1000;
+let newPassersbyInterval = 1000;
 
 
 //Food prices
