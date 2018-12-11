@@ -5,15 +5,15 @@ body {
 h1 {
 	color: blue;
 	text-align: center;
-/*	padding: 20px 0 10px 0;*/
+	font-family: 'Roboto', sans-serif;
 }
 
-/*div {
-	margin: 0;
-	padding: 0;
-}*/
+button {
+	width: 120px;
+}
 
 #taco-truck-scene {
+	font-family: 'Roboto', sans-serif;
 	background: blue;
 	border: 5px solid black;
 	height: 400px;
@@ -22,19 +22,18 @@ h1 {
 }
 
 .controls-container {
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+  	flex-wrap: nowrap;
 	text-align: center;
 	margin: 0 auto;
-	height: auto;
-	width: 800px;
+	width: 810px;
 	background: #eee;
-	border-right: 5px solid black;
-	border-left: 5px solid black;
 }
 
 .start-button, .end-of-day {
 	text-align: center;
 	color: white;
-	font-family: "Arial", san-serif;
 	height: 200px;
 	width: 350px;
 	margin: 0 auto;
@@ -45,51 +44,63 @@ h1 {
 	margin-top: 20px;
 }
 
-.prices {
+.prices, .customer-orders, .inventory {
 	text-align: center;
-	width: 200px;
-	margin: 0;
+	width: 33.333%;
+	padding: 0;
+	height: 140px;
 	display: inline-block;
-	border: 2px solid blue;
+}
+
+.prices {
+	border-left: 5px solid black;
+	line-height: 30px;
 }
 
 .customer-orders {
-/*	height: 200px;*/
-	width: 200px;
-	margin: 0;
-	display: inline-block;
-	border: 2px solid red;
+	border-right: 5px solid black;
+	border-left: 5px solid black;
+	line-height: 20px
 }
 
 .inventory {
-/*	height: 200px;*/
-	width: 300px;
-	margin: 0;
-	display: inline-block;
-	border: 2px solid green;
+	border-right: 5px solid black;
+	line-height: 28px;
 }
 
 #buy-ingredients {
-	border: 5px solid black;
-	background: #eee;
-	width: 800px;
-	margin: 0 auto;
+	font-family: 'Roboto', sans-serif;
+	display: flex;
+  	flex-wrap: nowrap;
 	text-align: center;
+	margin: 0 auto;
+	width: 810px;
+	background: #eee; 
+}
+
+.cost-per-pound, .servings-per-pound, .buy-buttons {
+	text-align: center;
+	width: 33.333%;
+	padding: 0;
+	height: 100px;
+	display: inline-block;
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	line-height: 19px;
 }
 
 .cost-per-pound{ 
-	display: inline-block;
-	border: 2px solid green;
+	border-left: 5px solid black;
 }
 
 .servings-per-pound {
-	display: inline-block;
-	border: 2px solid orange;
+	border-left: 5px solid black;
+	border-right: 5px solid black;
 }
 
 .buy-buttons {
-	display: inline-block;
-	border: 2px solid pink;
+	border-right: 5px solid black;
+	align-items: center; 
 }
 
 #day-loading-bar {

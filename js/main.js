@@ -68,7 +68,7 @@ function newPasserby(){
 	} else {
 	passersby++;
 	checkInv();
-	console.log("I'm just walking by");
+	console.log("I'm walking by");
 	var newCust = setTimeout(toBuyOrNotToBuy, customerBuyDelay);
 	}
 }
@@ -95,7 +95,7 @@ function checkInv() {
 //Function of Math.random(0-1), greater than .5 means they will buy, then run the whichTaco function (later this point of purchase can be manipulated by reputation and advertising)
 function toBuyOrNotToBuy(){
 	let x = Math.random();
-	console.log("Chance to buy is: "+chanceToBuy)
+	console.log("Chance to buy is: "+(chanceToBuy*10)+"%")
 	if(x > (1-chanceToBuy)) {
 		console.log("I'm getting a taco")
 		whichTaco();
