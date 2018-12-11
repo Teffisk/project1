@@ -37,7 +37,7 @@ function startNewGame() {
 	steakTacoPrice = 3;
 	avocadoTacoPrice = 3;
 	passersby = 0;
-	reputation = 50;
+	reputation =startingRep;
 	chanceToBuy = (reputation/10);
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
@@ -118,36 +118,42 @@ function whichTaco(){
 			console.log("Aw, bummer, you are out of chicken tacos. I'm leaving");
 			//Reduce Reputation
 			reputation = reputation - 3;
+			chanceToBuy = (reputation/10);
 			updateTheDom();
 			return;
 		}
 		placeChickenOrder();
 		//Increase reputation
 		reputation++;
+		chanceToBuy = (reputation/10);
 	} else if (x > .8) {
 		console.log("I'd like one avocado taco");
 		if (avocadoInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
 			console.log("Aw, bummer, you are out of avocado tacos. I'm leaving");
 			//Reduce reputation
 			reputation = reputation - 3;
+			chanceToBuy = (reputation/10);
 			updateTheDom();
 			return;
 		}
 		placeAvocadoOrder();
 		//Increase reputation
 		reputation++;
+		chanceToBuy = (reputation/10);
 	} else {
 		console.log("I'd like one steak taco");
 		if (steakInv <= 0 || salsaInv <= 0 || tortillaInv <= 0) {
 			console.log("Aw, bummer, you are out of steak tacos. I'm leaving");
 			//Reduce reputation
 			reputation = reputation - 3;
+			chanceToBuy = (reputation/10);
 			updateTheDom();
 			return;
 		}
 		placeSteakOrder();
 		//Increase reputation
 		reputation++;
+		chanceToBuy = (reputation/10);
 	}
 };
 
@@ -201,7 +207,7 @@ function move() {
     	endOfDay();
     } else {
       width++; 
-      bar.style.width = width + '%'; 
+      bar.style.width = width + '%';
     }
   }
 }

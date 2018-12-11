@@ -14,6 +14,7 @@ let reputation;
 let passersby;
 let customerBuyDelay = 1000;
 let newPassersbyInterval = 1000;
+let startingRep = 50;
 
 
 //Food prices
