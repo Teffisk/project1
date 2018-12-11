@@ -20,7 +20,7 @@ let displayTortillaInv = document.querySelector('#tortilla-inv').textContent = t
 let displaySalsaInv = document.querySelector('#salsa-inv').textContent = salsaInv;
 
 //Display Reputation which affects chance to buy
-let displayReputation = document.querySelector('#reputation').textContent = reputation;
+let displayReputation = document.querySelector('#reputation').textContent = reputation
 let displayPassersby = document.querySelector('#total-passersby').textContent = passersby;
 
 //Add event listeners to buttons
@@ -61,7 +61,7 @@ function updateTheDom() {
 	displayAvocadoInv = document.querySelector('#avocado-inv').textContent = avocadoInv;
 	displayTortillaInv = document.querySelector('#tortilla-inv').textContent = tortillaInv;
 	displaySalsaInv = document.querySelector('#salsa-inv').textContent = salsaInv;
-	displayReputation = document.querySelector('#reputation').textContent = reputation;
+	displayReputation = document.querySelector('#reputation').textContent = reputation.toFixed(1);
 	displayPassersby = document.querySelector('#total-passersby').textContent = passersby;
 	displayChickenQty = document.querySelector('#chicken-qty').textContent = chickenPack;
 	displaySteakQty = document.querySelector('#steak-qty').textContent = steakPack;

@@ -4,7 +4,6 @@ let account;
 let truckOpen;
 let customer;
 let chanceToBuy;
-let newChanceToBuy = .6;
 let tacoChoice;
 let chickenOrders;
 let steakOrders;
@@ -12,8 +11,9 @@ let avocadoOrders;
 let totalOrders;
 let reputation;
 let passersby;
-let customerBuyDelay = 1000;
-let newPassersbyInterval = 1000;
+let customerBuyDelay = 2000;
+let newPassersbyInterval = 3000;
+let startDayDelay = 5000;
 let startingRep = 50;
 
 

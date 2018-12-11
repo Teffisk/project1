@@ -12,10 +12,6 @@ function addStartSplash() {
 	startSplash.addEventListener('click', startNewGame)
 }
 
-// var customersStart =
-// 	//Customers walkby every three seconds
-// 	setInterval(newPasserby, newPassersbyInterval);
-
 var customersStart;
 
 function startNewGame() {
@@ -38,14 +34,25 @@ function startNewGame() {
 	avocadoTacoPrice = 3;
 	passersby = 0;
 	reputation =startingRep;
-	chanceToBuy = (reputation/10);
+	adjustChanceToBuy();
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
 	// setTimeout(customersStart, newPassersbyInterval);
 	setTimeout(function(){
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
-	}, newPassersbyInterval);
+	}, startDayDelay);
 	move();
+}
+
+function adjustChanceToBuy(){
+	chanceToBuy = (reputation*.75);
+}
+
+function improveRep(){
+	reputation = reputation +.1;
+}
+function dingRep(){
+	reputation = reputation -.5;
 }
 
 function startNewDay() {
@@ -55,9 +62,9 @@ function startNewDay() {
 	//Give the player some secs to stock up before customers come by
 	setTimeout(function(){
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
-	}, newPassersbyInterval);
+	}, startDayDelay);
 	move();
-	chanceToBuy = (reputation/10);
+	adjustChanceToBuy();
 	newPasserby();
 }
 
@@ -95,8 +102,8 @@ function checkInv() {
 //Function of Math.random(0-1), greater than .5 means they will buy, then run the whichTaco function (later this point of purchase can be manipulated by reputation and advertising)
 function toBuyOrNotToBuy(){
 	let x = Math.random();
-	console.log("Chance to buy is: "+(chanceToBuy*10)+"%")
-	if(x > (1-chanceToBuy)) {
+	console.log("Chance to buy is: "+(chanceToBuy)+"%")
+	if(x > (1-(chanceToBuy/100))) {
 		console.log("I'm getting a taco")
 		whichTaco();
 
@@ -117,43 +124,43 @@ function whichTaco(){
 		if (chickenInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
 			console.log("Aw, bummer, you are out of chicken tacos. I'm leaving");
 			//Reduce Reputation
-			reputation = reputation - 3;
-			chanceToBuy = (reputation/10);
+			dingRep();
+			adjustChanceToBuy();
 			updateTheDom();
 			return;
 		}
 		placeChickenOrder();
 		//Increase reputation
-		reputation++;
-		chanceToBuy = (reputation/10);
+		improveRep();
+		adjustChanceToBuy();
 	} else if (x > .8) {
 		console.log("I'd like one avocado taco");
 		if (avocadoInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
 			console.log("Aw, bummer, you are out of avocado tacos. I'm leaving");
 			//Reduce reputation
-			reputation = reputation - 3;
-			chanceToBuy = (reputation/10);
+			dingRep();
+			adjustChanceToBuy();
 			updateTheDom();
 			return;
 		}
 		placeAvocadoOrder();
 		//Increase reputation
-		reputation++;
-		chanceToBuy = (reputation/10);
+		improveRep();
+		adjustChanceToBuy();
 	} else {
 		console.log("I'd like one steak taco");
 		if (steakInv <= 0 || salsaInv <= 0 || tortillaInv <= 0) {
 			console.log("Aw, bummer, you are out of steak tacos. I'm leaving");
 			//Reduce reputation
-			reputation = reputation - 3;
-			chanceToBuy = (reputation/10);
+			dingRep();
+			adjustChanceToBuy();
 			updateTheDom();
 			return;
 		}
 		placeSteakOrder();
 		//Increase reputation
-		reputation++;
-		chanceToBuy = (reputation/10);
+		improveRep();
+		adjustChanceToBuy();
 	}
 };
 
