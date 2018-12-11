@@ -44,6 +44,10 @@ let displayAvocadoQty = document.querySelector('#avocado-qty').textContent = avo
 let displayTortillaQty = document.querySelector('#tortilla-qty').textContent = tortillaPack;
 let displaySalsaQty = document.querySelector('#salsa-qty').textContent = salsaPack;
 
+//On screen game displays
+let displayOpenOrClosed = document.querySelector('#open-closed')
+let displayDayCounter = document.querySelector('#day-count').textContent = dayCounter;
+
 //Functionality to the change price button
 
 
@@ -68,4 +72,6 @@ function updateTheDom() {
 	displayAvocadoQty = document.querySelector('#avocado-qty').textContent = avocadoPack;
 	displayTortillaQty = document.querySelector('#tortilla-qty').textContent = tortillaPack;
 	displaySalsaQty = document.querySelector('#salsa-qty').textContent = salsaPack;
+	//displayOpenOrClosed = document.querySelector('#open-closed').textContent = openOrClosed;
+	displayDayCounter = document.querySelector('#day-count').textContent = dayCounter;
 }

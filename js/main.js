@@ -33,8 +33,10 @@ function startNewGame() {
 	steakTacoPrice = 3;
 	avocadoTacoPrice = 3;
 	passersby = 0;
+	dayCounter = 1;
 	reputation = startingRep;
 	conversion = totalOrders/passersby;
+	truckOpen = false;
 	adjustChanceToBuy();
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
@@ -42,6 +44,7 @@ function startNewGame() {
 	setTimeout(function(){
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
 	}, startDayDelay);
+	checkIfOpenOrClosed();
 	move();
 }
 
@@ -63,6 +66,7 @@ function calcConv() {
 }
 
 function startNewDay() {
+	dayCounter++;
 	truckOpen = true;
 	document.querySelector(".end-of-day").remove();
 	updateTheDom();
@@ -95,7 +99,15 @@ function endOfDay() {
 	var eodSplash = document.createElement("div");
 	eodSplash.setAttribute("class", "end-of-day" );
 	// Add some text
-	eodSplash.appendChild( document.createTextNode(`Congratulations, you survived the day! You made $${account-startingAccount}, and you have a reputation of ${reputation.toFixed(1)}, and you had a customer conversion rate of ${(conversion*100).toFixed(1)}%. This means you get a score of ${score}. See if you can do even better tomorrow! Click here to start the next day.`) );
+	if(score <= 0) {
+		eodSplash.appendChild( document.createTextNode(`Yikes, your business is on the rails! See if you can do better tomorrow! Click here to start the next day.     Money in the account: $${account-startingAccount}. Reputation: ${reputation.toFixed(1)}. Customer Conversion Rate: ${(conversion*100).toFixed(1)}%. Score: ${score}.`) );}
+		else if (score > 0 && score < 50){
+		eodSplash.appendChild( document.createTextNode(`Congratulations, you survived the day! See if you can do even better tomorrow! Click here to start the next day.     Money in the account: $${account-startingAccount}. Reputation: ${reputation.toFixed(1)}. Customer Conversion Rate: ${(conversion*100).toFixed(1)}%. Score: ${score}.`) );}
+		else if (score > 50 && score < 100) {
+		eodSplash.appendChild( document.createTextNode(`Hey, that's pretty great! You are running a successful business. See if you can do even better tomorrow! Click here to start the next day.     Money in the account: $${account-startingAccount}. Reputation: ${reputation.toFixed(1)}. Customer Conversion Rate: ${(conversion*100).toFixed(1)}%. Score: ${score}.`) );}
+		else if (score > 100) {
+		eodSplash.appendChild( document.createTextNode(`Wow, killer score! See if you can do even better tomorrow! Click here to start the next day.     Money in the account: $${account-startingAccount}. Reputation: ${reputation.toFixed(1)}. Customer Conversion Rate: ${(conversion*100).toFixed(1)}%. Score: ${score}.`) );
+		}
 	// Add it to the document body
 	document.querySelector('#taco-truck-scene').appendChild(eodSplash);
 	eodSplash.addEventListener('click', startNewDay);
@@ -231,4 +243,15 @@ function move() {
   }
 }
 
+function openingCountdown(){
+	customerStart = setInterval(openingCountdown, startDayDelay)
+}
+
+function checkIfOpenOrClosed(){
+if (truckOpen = true) {
+	displayOpenOrClosed.textContent = "Open";
+} else {
+	displayOpenOrClosed.textContent = "Closed";
+	}
+}
 

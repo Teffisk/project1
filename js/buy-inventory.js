@@ -1,5 +1,5 @@
 function buyMoreChicken() {
-	if (account-chickenCost <= 0) {
+	if (account-chickenCost < 0) {
 		console.log("Oh no, you don't have enough money to buy that.")
 	} else {
 	chickenInv = chickenInv + chickenPack;
@@ -9,7 +9,7 @@ function buyMoreChicken() {
 }
 
 function buyMoreSteak(){
-	if (account-steakCost <= 0) {
+	if (account-steakCost < 0) {
 		console.log("Oh no, you don't have enough money to buy that.")
 	} else {
 	steakInv = steakInv + steakPack;
@@ -19,7 +19,7 @@ function buyMoreSteak(){
 }
 
 function buyMoreAvocado() {
-	if (account-avocadoCost <= 0) {
+	if (account-avocadoCost < 0) {
 		console.log("Oh no, you don't have enough money to buy that.")
 	} else {
 	avocadoInv = avocadoInv + avocadoPack;
@@ -29,7 +29,7 @@ function buyMoreAvocado() {
 }
 
 function buyMoreTortillas() {
-	if (account-tortillaCost <= 0) {
+	if (account-tortillaCost < 0) {
 		console.log("Oh no, you don't have enough money to buy that.")
 	} else {
 	tortillaInv = tortillaInv + tortillaPack;
@@ -39,7 +39,7 @@ function buyMoreTortillas() {
 }
 
 function buyMoreSalsa() {
-	if (account-salsaCost <= 0) {
+	if (account-salsaCost < 0) {
 		console.log("Oh no, you don't have enough money to buy that.")
 	} else {
 	salsaInv = salsaInv + salsaPack;
