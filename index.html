@@ -7,6 +7,9 @@
 <body>
 	<h1 id="game-title">Indy's Taco Truck</h1>
 	<div id="taco-truck-scene">
+		<div id="day-loading-bar">
+			<div id="percent-progress"></div>
+		</div>
 	</div>
 	<div class="controls-container">
 		<div class="prices">
@@ -42,28 +45,29 @@
 		</div>
 	</div>
 	<div id="buy-ingredients">
-		<div>Order More Chicken: $<span id="chicken-cost"></span> per lb</div>
-		<div><button id="buy-more-chicken-button">Buy More Chicken</button></div>
-		<div><span id="chicken-qty"></span> servings per lb</div>
-
-		<div>Order More Steak: $<span id="steak-cost"></span> per lb</div>
-		<div><button id="buy-more-steak-button">Buy More Steak</button></div>
-		<div><span id="steak-qty"></span> servings per lb</div>
-
-		<div>Order More Avocados: $<span id="avocado-cost"></span> per lb</div>
-		<div><button id="buy-more-avocado-button">Buy More Avocados</button></div>
-		<div><span id="avocado-qty"></span> servings per lb</div>
-
-
-
-		<div>Order More Tortillas: $<span id="tortilla-cost"></span> per lb</div>
-		<div><button id="buy-more-tortillas-button">Buy More Tortillas</button></div>
-		<div><span id="tortilla-qty"></span> servings per lb</div>
-
-		<div>Order More Salsa: $<span id="salsa-cost"></span> per lb</div>
-		<div><button id="buy-more-salsa-button">Buy More Salsa</button></div>
-		<div><span id="salsa-qty"></span> servings per lb</div>
+		<div class="cost-per-pound">
+			<div>Chicken: $<span id="chicken-cost"></span> per lb. </div>
+			<div>Steak: $<span id="steak-cost"></span> per lb.</div>
+			<div>Avocados: $<span id="avocado-cost"></span> per lb.</div>
+			<div>Tortillas: $<span id="tortilla-cost"></span> per lb. </div>
+			<div>Salsa: $<span id="salsa-cost"></span> per lb. </div>
+		</div>
+		<div class="servings-per-pound">
+			<div><span id="chicken-qty"></span> servings per lb.</div>
+			<div><span id="steak-qty"></span> servings per lb.</div>
+			<div><span id="avocado-qty"></span> servings per lb.</div>
+			<div><span id="tortilla-qty"></span> servings per lb.</div>
+			<div><span id="salsa-qty"></span> servings per lb.</div>
+		</div>
+		<div class="buy-buttons">
+			<div><button id="buy-more-chicken-button">Buy More Chicken</button></div>
+			<div><button id="buy-more-steak-button">Buy More Steak</button></div>	
+			<div><button id="buy-more-avocado-button">Buy More Avocados</button></div>
+			<div><button id="buy-more-tortillas-button">Buy More Tortillas</button></div>
+			<div><button id="buy-more-salsa-button">Buy More Salsa</button></div>	
+		</div>
 	</div>
+
 
 
 <script type="text/javascript" src="./js/buy-inventory.js"></script>

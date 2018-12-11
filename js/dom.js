@@ -43,6 +43,9 @@ let displayAvocadoQty = document.querySelector('#avocado-qty').textContent = avo
 let displayTortillaQty = document.querySelector('#tortilla-qty').textContent = tortillaPack;
 let displaySalsaQty = document.querySelector('#salsa-qty').textContent = salsaPack;
 
+//Functionality to the change price button
+
+
 function updateTheDom() {
 	displayTotalOrders = document.querySelector('#total-orders').textContent = totalOrders;
 	displayChickenOrders = document.querySelector('#chicken-orders').textContent = chickenOrders;

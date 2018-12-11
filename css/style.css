@@ -1,19 +1,21 @@
+body {
+	background: #eee;
+}
+
 h1 {
 	color: blue;
 	text-align: center;
-	padding: 20px 0 10px 0;
+/*	padding: 20px 0 10px 0;*/
 }
 
-div {
+/*div {
 	margin: 0;
 	padding: 0;
-}
+}*/
 
 #taco-truck-scene {
-	background: #eee;
-	border-top: 5px solid black;
-	border-right: 5px solid black;
-	border-left: 5px solid black;
+	background: blue;
+	border: 5px solid black;
 	height: 400px;
 	width: 800px;
 	margin: 0 auto;
@@ -25,7 +27,8 @@ div {
 	height: auto;
 	width: 800px;
 	background: #eee;
-	border: 5px solid black;
+	border-right: 5px solid black;
+	border-left: 5px solid black;
 }
 
 .prices {
@@ -60,5 +63,32 @@ div {
 	text-align: center;
 }
 
+.cost-per-pound{ 
+	display: inline-block;
+	border: 2px solid green;
+}
 
+.servings-per-pound {
+	display: inline-block;
+	border: 2px solid orange;
+}
+
+.buy-buttons {
+	display: inline-block;
+	border: 2px solid pink;
+}
+
+#day-loading-bar {
+	border: 2px solid black;
+	height: 10px;
+	width: 700px;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+#percent-progress {
+	background-color: red;
+	height: 10px;
+	width: 700px;
+}
 

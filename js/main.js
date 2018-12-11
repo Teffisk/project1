@@ -29,13 +29,11 @@ function startNewGame() {
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
 	setTimeout(customersStart, 5000);
+	move();
 }
 
 //A setInterval function that spanws customers at a set frequency. This frequency can be adjusted by your reputation and ads.
 //A passerby will spawn every 3 seconds, and 2 seconds after that, they walk by the taco truck and the toBuyOrNotToBuy function runs
-// function passerbySpawn(){
-// 	setInterval(newPasserby(), 3000)
-// }
 
 function newPasserby(){
 	passersby++;
@@ -143,5 +141,23 @@ function placeAvocadoOrder() {
 	updateTheDom();
 }
 
+function dayProgressionBar(){
+	setInterval(dayProgress, 1)
+}
+
+function move() {
+  var bar = document.querySelector('#percent-progress'); 
+  var width = 1;
+  //Adds 1% to the loading bar each 1/3 of a second so that loading bar takes 30 secs
+  var tick = setInterval(progress, 333);
+  function progress() {
+    if (width >= 100) {
+      clearInterval(tick);
+    } else {
+      width++; 
+      bar.style.width = width + '%'; 
+    }
+  }
+}
 
 
