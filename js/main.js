@@ -16,7 +16,7 @@ var customersStart;
 
 function startNewGame() {
 	document.querySelector(".start-button").remove();
-	account = 100;
+	account = startingAccount;
 	chickenInv = 0;
 	steakInv = 0;
 	avocadoInv = 0;
@@ -33,7 +33,8 @@ function startNewGame() {
 	steakTacoPrice = 3;
 	avocadoTacoPrice = 3;
 	passersby = 0;
-	reputation =startingRep;
+	reputation = startingRep;
+	conversion = totalOrders/passersby;
 	adjustChanceToBuy();
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
@@ -53,6 +54,12 @@ function improveRep(){
 }
 function dingRep(){
 	reputation = reputation -.5;
+}
+
+function calcConv() {
+	conversion = totalOrders/passersby;
+	score = (conversion-.375) + ((chickenOrders*chickenTacoPrice)+(steakOrders*steakTacoPrice)+(avocadoOrders*avocadoTacoPrice))+((account-startingAccount)/10);
+	score = score.toFixed(1);
 }
 
 function startNewDay() {
@@ -77,15 +84,18 @@ function newPasserby(){
 	checkInv();
 	console.log("I'm walking by");
 	var newCust = setTimeout(toBuyOrNotToBuy, customerBuyDelay);
+	updateTheDom();
 	}
 }
 
 function endOfDay() {
 	console.log(truckOpen);
+	calcConv();
+	updateTheDom();
 	var eodSplash = document.createElement("div");
 	eodSplash.setAttribute("class", "end-of-day" );
 	// Add some text
-	eodSplash.appendChild( document.createTextNode("Congratulations, you survived the day! Make sure to stock up again to have an even more successful day tomorrow. Click here to start the next day.") );
+	eodSplash.appendChild( document.createTextNode(`Congratulations, you survived the day! You made $${account-startingAccount}, and you have a reputation of ${reputation.toFixed(1)}, and you had a customer conversion rate of ${(conversion*100).toFixed(1)}%. This means you get a score of ${score}. See if you can do even better tomorrow! Click here to start the next day.`) );
 	// Add it to the document body
 	document.querySelector('#taco-truck-scene').appendChild(eodSplash);
 	eodSplash.addEventListener('click', startNewDay);
@@ -104,7 +114,9 @@ function toBuyOrNotToBuy(){
 	let x = Math.random();
 	console.log("Chance to buy is: "+(chanceToBuy)+"%")
 	if(x > (1-(chanceToBuy/100))) {
-		console.log("I'm getting a taco")
+		console.log("I'm getting a taco");
+		calcConv();
+		console.log("total orders is: "+totalOrders+" conv rate is: "+conversion)
 		whichTaco();
 
 	} else {
@@ -205,7 +217,7 @@ function move() {
   var bar = document.querySelector('#percent-progress'); 
   var width = 1;
   //Adds 1% to the loading bar each 1/3 of a second so that loading bar takes 30 secs
-  var tick = setInterval(progress, 333);
+  var tick = setInterval(progress, 380);
   function progress() {
   	//When the bar is 100% filled, stop the timer
     if (width >= 100) {

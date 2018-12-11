@@ -1,6 +1,7 @@
 //Global variables
 let startSplash;
 let account;
+let startingAccount = 100;
 let truckOpen;
 let customer;
 let chanceToBuy;
@@ -15,12 +16,15 @@ let customerBuyDelay = 2000;
 let newPassersbyInterval = 3000;
 let startDayDelay = 5000;
 let startingRep = 50;
+let conversion;
+
 
 
 //Food prices
 let chickenTacoPrice;
 let steakTacoPrice;
 let avocadoTacoPrice;
+let score = (conversion-.375) + ((chickenOrders*chickenTacoPrice)+(steakOrders*steakTacoPrice)+(avocadoOrders*avocadoTacoPrice))+(account-startingAccount);
 
 //Invetory units
 let steakPack = 12;
@@ -35,19 +39,6 @@ let salsaCost = 20;
 let chickenCost = 10;
 let steakCost = 12;
 let avocadoCost = 10;
-
-
-//Recipes
-let chickenServing = 1;
-let steakServing = 1;
-let avocadoServing = 1;
-let tortillaServing = 1;
-let salsaServing = 1;
-
-//Customer Orders
-// let chickenTacoIng = chickenServing + tortillaServing + salsaServing;
-// let steakTacoIng = steakServing + tortillaServing + salsaServing;
-// let avcadoTacoIng = avocadoServing + tortillaServing + salsaServing;
 
 //Inventory
 let chickenInv;
