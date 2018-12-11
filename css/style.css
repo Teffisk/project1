@@ -31,6 +31,14 @@ h1 {
 	border-left: 5px solid black;
 }
 
+.start-button {
+	text-align: center;
+	height: 300px;
+	width: 500px;
+	margin: 0 auto;
+	background-color: orange;
+}
+
 .prices {
 	text-align: center;
 	width: 200px;
@@ -87,7 +95,7 @@ h1 {
 }
 
 #percent-progress {
-	background-color: red;
+	background-color: cyan;
 	height: 10px;
 	width: 700px;
 }

@@ -1,5 +1,13 @@
 console.log("js is running");
-startNewGame();
+// Create a div and set class
+var startSplash = document.createElement("div");
+startSplash.setAttribute("class", "start-button" );
+// Add some text
+startSplash.appendChild( document.createTextNode("Press start to begin!") );
+// Add it to the document body
+document.querySelector('#taco-truck-scene').appendChild(startSplash);
+
+startSplash.addEventListener('click', startNewGame)
 
 function customersStart(){
 	//Customers walkby every three seconds
@@ -151,8 +159,10 @@ function move() {
   //Adds 1% to the loading bar each 1/3 of a second so that loading bar takes 30 secs
   var tick = setInterval(progress, 333);
   function progress() {
+  	//When the bar is 100% filled, stop the timer
     if (width >= 100) {
       clearInterval(tick);
+      //Run the day 1 over function
     } else {
       width++; 
       bar.style.width = width + '%'; 

@@ -4,6 +4,7 @@ let displayChickenOrders = document.querySelector('#chicken-orders').textContent
 let displaySteakOrders = document.querySelector('#steak-orders').textContent = steakOrders;
 let displayAvocadoOrders = document.querySelector('#avocado-orders').textContent = avocadoOrders;
 
+let gameScene = document.querySelector('#taco-truck-scene')
 let displayAccount = document.querySelector('#account').textContent = account;
 
 //Display taco prices in game
