@@ -30,6 +30,21 @@ let buyAvocadoButton = document.querySelector('#buy-more-avocado-button').addEve
 let buyTortillasButton = document.querySelector('#buy-more-tortillas-button').addEventListener('click', buyMoreTortillas);
 let buySalsaButton = document.querySelector('#buy-more-salsa-button').addEventListener('click', buyMoreSalsa);
 
+function enableButtons(){
+	buyChickenButton = document.querySelector('#buy-more-chicken-button').addEventListener('click', buyMoreChicken);
+	buySteakButton = document.querySelector('#buy-more-steak-button').addEventListener('click', buyMoreSteak);
+	buyAvocadoButton = document.querySelector('#buy-more-avocado-button').addEventListener('click', buyMoreAvocado);
+	buyTortillasButton = document.querySelector('#buy-more-tortillas-button').addEventListener('click', buyMoreTortillas);
+	buySalsaButton = document.querySelector('#buy-more-salsa-button').addEventListener('click', buyMoreSalsa);
+}
+
+function disableButtons(){
+	buyChickenButton = document.querySelector('#buy-more-chicken-button').removeEventListener('click', buyMoreChicken);
+	buySteakButton = document.querySelector('#buy-more-steak-button').removeEventListener('click', buyMoreSteak);
+	buyAvocadoButton = document.querySelector('#buy-more-avocado-button').removeEventListener('click', buyMoreAvocado);
+	buyTortillasButton = document.querySelector('#buy-more-tortillas-button').removeEventListener('click', buyMoreTortillas);
+	buySalsaButton = document.querySelector('#buy-more-salsa-button').removeEventListener('click', buyMoreSalsa);
+}
 //Show the cost per pound and servings per pound of each ingredient
 let displayChickenCost = document.querySelector('#chicken-cost').textContent = chickenCost;
 let displaySteakCost = document.querySelector('#steak-cost').textContent = steakCost;
@@ -73,9 +88,9 @@ function updateTheDom() {
 	displayTortillaQty = document.querySelector('#tortilla-qty').textContent = tortillaPack;
 	displaySalsaQty = document.querySelector('#salsa-qty').textContent = salsaPack;
 	if (openingCountdown > 0){ 
-		displayOpenOrClosed = document.querySelector('#open-closed').textContent = "opens in: "+openingCountdown;
+		displayOpenOrClosed = document.querySelector('#open-closed').textContent = "Your truck opens in: "+openingCountdown;
 	} else if (openingCountdown <= 0){
-		displayOpenOrClosed = document.querySelector('#open-closed').textContent = "is open"
+		displayOpenOrClosed = document.querySelector('#open-closed').textContent = "Your truck is open"
 	}
 	displayDayCounter = document.querySelector('#day-count').textContent = dayCounter;
 }

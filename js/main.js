@@ -3,6 +3,7 @@ console.log("js is running");
 addStartSplash();
 
 function addStartSplash() {
+	disableButtons();
 	var startSplash = document.createElement("div");
 	startSplash.setAttribute("class", "start-button" );
 	// Add some text
@@ -15,6 +16,7 @@ function addStartSplash() {
 var customersStart;
 
 function startNewGame() {
+	enableButtons();
 	document.querySelector(".start-button").remove();
 	account = startingAccount;
 	chickenInv = 0;
@@ -67,6 +69,7 @@ function calcConv() {
 }
 
 function startNewDay() {
+	enableButtons();
 	startDayDelay = 5000;
 			openingCountdown = startDayDelay/1000;
 			showCountdown = setInterval(count, 1000);
@@ -97,6 +100,7 @@ function newPasserby(){
 }
 
 function endOfDay() {
+	disableButtons();
 	console.log(truckOpen);
 	calcConv();
 	updateTheDom();
