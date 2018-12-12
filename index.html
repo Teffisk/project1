@@ -6,72 +6,77 @@
 	<link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 <body>
-	<h1 id="game-title">Indy's Taco Truck</h1>
-	<div id="taco-truck-scene">
-		<div id="day-loading-bar">
-			<div id="percent-progress"></div>
+	<div id="frame">
+		<div id="left-border"></div>
+		<div id="game-container">
+		<h1 id="game-title">Indy's Taco Truck</h1>
+		<div id="taco-truck-scene">
+			<div id="day-loading-bar">
+				<div id="percent-progress"></div>
+			</div>
+				<div id="day-display">Day #<span id="day-count"></span></div>
+				<div id="displaycountdown"><span id="open-closed">is closed</span></div>
+				<!-- <img class="customer" src="./img/huskiegiphy.gif"> -->
 		</div>
-			<div id="day-display">Day #<span id="day-count"></span></div>
-			<div id="displaycountdown"><span id="open-closed">is closed</span></div>
-			<!-- <img class="customer" src="./img/huskiegiphy.gif"> -->
+		<div class="controls-container">
+			<div class="prices">
+				<div>Chicken Taco Price: $<span id="chicken-taco-price"></span></div>
+				<div>Steak Taco Price: $<span id="steak-taco-price"></span></div>
+				<div>Avocado Taco Price: $<span id="avocado-taco-price"></span></div>
+				<button id="change-prices-button">Change Prices</button>
+			</div>
+			<div class="customer-orders">
+				<div>Revenue: $<span id="account"></span></div>
+				<div>Chicken Taco Orders: <span id="chicken-orders"></span></div>
+				<div>Steak Taco Orders: <span id="steak-orders"></span></div>
+				<div>Avocado Taco Orders: <span id="avocado-orders"></span></div>
+				<div>Total Orders: <span id="total-orders"></span></div>
+				<div>Passersby: <span id="total-passersby"></span></div>
+				<div>Reputation: <span id="reputation"></span></div>
+			</div>
+			<div class="inventory">
+				<div>Chicken Inventory: <span id="chicken-inv"></span>
+				</div>
+				
+				<div>Steak Inventory: <span id="steak-inv"></span>
+				</div>
+
+				<div>Avocado Inventory: <span id="avocado-inv"></span>
+				</div>
+
+				<div>Tortilla Inventory: <span id="tortilla-inv"></span>
+				</div>
+
+				<div>Salsa Inventory : <span id="salsa-inv"></span>
+				</div>
+			</div>
+		</div>
+		<div id="buy-ingredients">
+			<div class="cost-per-pound">
+				<div>Chicken: $<span id="chicken-cost"></span> per lb. </div>
+				<div>Steak: $<span id="steak-cost"></span> per lb.</div>
+				<div>Avocados: $<span id="avocado-cost"></span> per lb.</div>
+				<div>Tortillas: $<span id="tortilla-cost"></span> per lb. </div>
+				<div>Salsa: $<span id="salsa-cost"></span> per lb. </div>
+			</div>
+			<div class="servings-per-pound">
+				<div><span id="chicken-qty"></span> servings per lb.</div>
+				<div><span id="steak-qty"></span> servings per lb.</div>
+				<div><span id="avocado-qty"></span> servings per lb.</div>
+				<div><span id="tortilla-qty"></span> servings per lb.</div>
+				<div><span id="salsa-qty"></span> servings per lb.</div>
+			</div>
+			<div class="buy-buttons">
+				<div><button id="buy-more-chicken-button">Buy More Chicken</button></div>
+				<div><button id="buy-more-steak-button">Buy More Steak</button></div>	
+				<div><button id="buy-more-avocado-button">Buy More Avocados</button></div>
+				<div><button id="buy-more-tortillas-button">Buy More Tortillas</button></div>
+				<div><button id="buy-more-salsa-button">Buy More Salsa</button></div>	
+			</div>
+		</div>
 	</div>
-	<div class="controls-container">
-		<div class="prices">
-			<div>Chicken Taco Price: $<span id="chicken-taco-price"></span></div>
-			<div>Steak Taco Price: $<span id="steak-taco-price"></span></div>
-			<div>Avocado Taco Price: $<span id="avocado-taco-price"></span></div>
-			<button id="change-prices-button">Change Prices</button>
-		</div>
-		<div class="customer-orders">
-			<div>Revenue: $<span id="account"></span></div>
-			<div>Chicken Taco Orders: <span id="chicken-orders"></span></div>
-			<div>Steak Taco Orders: <span id="steak-orders"></span></div>
-			<div>Avocado Taco Orders: <span id="avocado-orders"></span></div>
-			<div>Total Orders: <span id="total-orders"></span></div>
-			<div>Passersby: <span id="total-passersby"></span></div>
-			<div>Reputation: <span id="reputation"></span></div>
-		</div>
-		<div class="inventory">
-			<div>Chicken Inventory: <span id="chicken-inv"></span>
-			</div>
-			
-			<div>Steak Inventory: <span id="steak-inv"></span>
-			</div>
-
-			<div>Avocado Inventory: <span id="avocado-inv"></span>
-			</div>
-
-			<div>Tortilla Inventory: <span id="tortilla-inv"></span>
-			</div>
-
-			<div>Salsa Inventory : <span id="salsa-inv"></span>
-			</div>
-		</div>
-	</div>
-	<div id="buy-ingredients">
-		<div class="cost-per-pound">
-			<div>Chicken: $<span id="chicken-cost"></span> per lb. </div>
-			<div>Steak: $<span id="steak-cost"></span> per lb.</div>
-			<div>Avocados: $<span id="avocado-cost"></span> per lb.</div>
-			<div>Tortillas: $<span id="tortilla-cost"></span> per lb. </div>
-			<div>Salsa: $<span id="salsa-cost"></span> per lb. </div>
-		</div>
-		<div class="servings-per-pound">
-			<div><span id="chicken-qty"></span> servings per lb.</div>
-			<div><span id="steak-qty"></span> servings per lb.</div>
-			<div><span id="avocado-qty"></span> servings per lb.</div>
-			<div><span id="tortilla-qty"></span> servings per lb.</div>
-			<div><span id="salsa-qty"></span> servings per lb.</div>
-		</div>
-		<div class="buy-buttons">
-			<div><button id="buy-more-chicken-button">Buy More Chicken</button></div>
-			<div><button id="buy-more-steak-button">Buy More Steak</button></div>	
-			<div><button id="buy-more-avocado-button">Buy More Avocados</button></div>
-			<div><button id="buy-more-tortillas-button">Buy More Tortillas</button></div>
-			<div><button id="buy-more-salsa-button">Buy More Salsa</button></div>	
-		</div>
-	</div>
-
+	<div id="right-border"></div>
+</div>
 
 
 <script type="text/javascript" src="./js/buy-inventory.js"></script>
