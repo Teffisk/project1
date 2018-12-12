@@ -17,8 +17,8 @@ let newPassersbyInterval = 3000;
 let startDayDelay = 5000;
 let startingRep = 50;
 let conversion;
-let openOrClosed;
 let dayCounter;
+let openingCountdown;
 
 
 

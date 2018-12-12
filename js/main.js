@@ -36,7 +36,9 @@ function startNewGame() {
 	dayCounter = 1;
 	reputation = startingRep;
 	conversion = totalOrders/passersby;
-	truckOpen = false;
+	startDayDelay = 5000;
+			openingCountdown = startDayDelay/1000;
+			showCountdown = setInterval(count, 1000);
 	adjustChanceToBuy();
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
@@ -44,7 +46,6 @@ function startNewGame() {
 	setTimeout(function(){
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
 	}, startDayDelay);
-	checkIfOpenOrClosed();
 	move();
 }
 
@@ -66,8 +67,10 @@ function calcConv() {
 }
 
 function startNewDay() {
+	startDayDelay = 5000;
+			openingCountdown = startDayDelay/1000;
+			showCountdown = setInterval(count, 1000);
 	dayCounter++;
-	truckOpen = true;
 	document.querySelector(".end-of-day").remove();
 	updateTheDom();
 	//Give the player some secs to stock up before customers come by
@@ -75,6 +78,7 @@ function startNewDay() {
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
 	}, startDayDelay);
 	move();
+	truckOpen = true;
 	adjustChanceToBuy();
 	newPasserby();
 }
@@ -226,6 +230,7 @@ function dayProgressionBar(){
 }
 
 function move() {
+	updateTheDom();
   var bar = document.querySelector('#percent-progress'); 
   var width = 1;
   //Adds 1% to the loading bar each 1/3 of a second so that loading bar takes 30 secs
@@ -243,15 +248,10 @@ function move() {
   }
 }
 
-function openingCountdown(){
-	customerStart = setInterval(openingCountdown, startDayDelay)
-}
-
-function checkIfOpenOrClosed(){
-if (truckOpen = true) {
-	displayOpenOrClosed.textContent = "Open";
-} else {
-	displayOpenOrClosed.textContent = "Closed";
-	}
+function count() {
+	updateTheDom();
+	if (openingCountdown <= 0){clearInterval(showCountdown);}
+	console.log(openingCountdown)
+	openingCountdown--;
 }
 

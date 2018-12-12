@@ -21,6 +21,17 @@ button {
 	margin: 0 auto;
 }
 
+#day-display {
+	text-align: center;
+}
+
+#displaycountdown {
+	display: fixed;
+	bottom: 5px;
+	text-align: center;
+
+}
+
 .controls-container {
 	font-family: 'Roboto', sans-serif;
 	display: flex;
