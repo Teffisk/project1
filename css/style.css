@@ -12,9 +12,16 @@ button {
 	width: 120px;
 }
 
+.customer {
+	position: relative;
+	left: 10px;
+	top: 190px;
+}
+
 #taco-truck-scene {
 	font-family: 'Roboto', sans-serif;
-	background: blue;
+	background-image: url("../img/background.jpg");
+	background-size: 90%;
 	border: 5px solid black;
 	height: 400px;
 	width: 800px;
@@ -53,6 +60,7 @@ button {
 	border: 5px solid white;
 	border-radius: 10px;
 	margin-top: 20px;
+	z-index: 1;
 }
 
 .prices, .customer-orders, .inventory {
