@@ -20,7 +20,8 @@ let conversion;
 let dayCounter;
 let openingCountdown;
 let customerImg;
-let customerArray = [];
+let customerRightArray = [];
+let customerLeftArray = [];
 
 
 

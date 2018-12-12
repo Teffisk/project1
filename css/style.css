@@ -16,13 +16,24 @@ button {
 	position: absolute;
 }
 
-@keyframes stroll {
+@keyframes strollLeft {
+	from {right: -140px;}
+	to {right: 920px;}
+}
+
+.moving-left {
+	animation-name: strollLeft;
+	animation-duration: 5s;
+	position: absolute;
+}
+
+@keyframes strollRight {
 	from {left: -140px;}
 	to {left: 920px;}
 }
 
-.moving {
-	animation-name: stroll;
+.moving-right {
+	animation-name: strollRight;
 	animation-duration: 5s;
 	position: absolute;
 }
