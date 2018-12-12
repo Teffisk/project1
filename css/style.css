@@ -13,12 +13,22 @@ button {
 }
 
 .customer {
-	position: relative;
-	left: 10px;
-	top: 190px;
+	position: absolute;
+}
+
+@keyframes stroll {
+	from {left: -140px;}
+	to {left: 920px;}
+}
+
+.moving {
+	animation-name: stroll;
+	animation-duration: 5s;
+	position: absolute;
 }
 
 #taco-truck-scene {
+	position: relative;
 	font-family: 'Roboto', sans-serif;
 	background-image: url("../img/background.jpg");
 	background-size: 90%;

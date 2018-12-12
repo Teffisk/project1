@@ -19,6 +19,8 @@ let startingRep = 50;
 let conversion;
 let dayCounter;
 let openingCountdown;
+let customerImg;
+let customerArray = [];
 
 
 
