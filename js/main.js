@@ -111,12 +111,11 @@ function newPasserby(){
 	}
 }
 
-// function toBuyOrNotToBuy(){
-	
-// }
-
 function createNewNoncustomer(){
-	if (passersby%2==0) {
+	noncustomerImg = document.createElement('img');
+	noncustomerImg.setAttribute("id", `${passersby}`);
+	if (noncustomerImg.id%2 == 0) {
+		noncustomerImgRight = noncustomerImg;
 		noncustomerImgRight = document.createElement('img');
 		noncustomerImgRight.src = "./img/huskieRight.gif";
 		noncustomerImgRight.setAttribute("class", "noncustomer" );
@@ -127,72 +126,21 @@ function createNewNoncustomer(){
 		noncustomerRightArray.push(noncustomerImgRight);
 		noncustomerRightArray.forEach(function(customer) {
 		moveRightPasserby(customer);})
-		} else {
-	noncustomerImgLeft = document.createElement('img');
-	noncustomerImgLeft.src = "./img/huskieLeft.gif";
-	noncustomerImgLeft.setAttribute("class", "noncustomer" );
-	document.querySelector('#taco-truck-scene').appendChild(noncustomerImgLeft);
-	noncustomerImgLeft.style.position= 'absolute'; 
-	noncustomerImgLeft.style.top = '250px';
-	noncustomerImgLeft.style.right = '-140px';
-	noncustomerLeftArray.push(noncustomerImgLeft);
-	noncustomerLeftArray.forEach(function(customer) {
-		moveLeftPasserby(customer);
-		});
+	} else  if (noncustomerImg.id%2 != 0) {
+		noncustomerImgLeft = noncustomerImg;
+		noncustomerImgLeft = document.createElement('img');
+		noncustomerImgLeft.src = "./img/huskieLeft.gif";
+		noncustomerImgLeft.setAttribute("class", "noncustomer" );
+		document.querySelector('#taco-truck-scene').appendChild(noncustomerImgLeft);
+		noncustomerImgLeft.style.position= 'absolute'; 
+		noncustomerImgLeft.style.top = '250px';
+		noncustomerImgLeft.style.right = '-140px';
+		noncustomerLeftArray.push(noncustomerImgLeft);
+		noncustomerLeftArray.forEach(function(customer) {
+			moveLeftPasserby(customer);
+			});
 	}
 }
-
-function createNewCustomer(){
-	if (passersby%2==0) {
-	customerImgRight = document.createElement('img');
-	customerImgRight.src = "./img/withTacoRight.gif";
-	customerImgRight.setAttribute("class", "customer" );
-	document.querySelector('#taco-truck-scene').appendChild(customerImgRight);
-	customerImgRight.style.position= 'absolute'; 
-	customerImgRight.style.top = '250px';
-	customerImgRight.style.left = '-140px';
-	customerRightArray.push(customerImgRight);
-	customerRightArray.forEach(function(customer) {
-		moveRightToBuy(customer);
-   });
-	} else {
-	customerImgLeft = document.createElement('img');
-	customerImgLeft.src = "./img/withTacoLeft.gif";
-	customerImgLeft.setAttribute("class", "customer" );
-	document.querySelector('#taco-truck-scene').appendChild(customerImgLeft);
-	customerImgLeft.style.position= 'absolute'; 
-	customerImgLeft.style.top = '250px';
-	customerImgLeft.style.right = '-140px';
-	customerLeftArray.push(customerImgLeft);
-	customerLeftArray.forEach(function(customer) {
-  		moveLeftToBuy(customer);
-   });
-	}
-}
-
-var left=0, game = document.getElementById('taco-truck-scene');
-
-// function walkRightPasserby(){
-//    customerImgRight.style.position= 'absolute'; 
-//    customerImgRight.style.top = '250px';
-//    customerImgRight.style.left = '-140px';
-//    // customerImg.style.visibility='hidden';
-//    customerRightArray.push(customerImgRight);
-//    customerRightArray.forEach(function(customer) {
-//    moveRightPasserby(customer);
-//    });
-// } 
-
-// function walkLeftPasserby(){
-//    customerImgLeft.style.position= 'absolute'; 
-//    customerImgLeft.style.top = '250px';
-//    customerImgLeft.style.right = '-140px';
-//    // customerImg.style.visibility='hidden';
-//    customerLeftArray.push(customerImgLeft);
-//    customerLeftArray.forEach(function(customer) {
-//    moveLeftPasserby(customer);
-//    });
-// } 
 
 function moveRightPasserby(currentCustomer){
     currentCustomer.classList.add("moving-right-passerby");
@@ -202,28 +150,83 @@ function moveLeftPasserby(currentCustomer){
     currentCustomer.classList.add("moving-left-passerby");
 }
 
-function walkRightToBuy(){
-
-} 
-
-function walkLeftToBuy(){
-   customerImgLeft.style.position= 'absolute'; 
-   customerImgLeft.style.top = '250px';
-   customerImgLeft.style.right = '-140px';
-   customerLeftArray.push(customerImgLeft);
-   customerLeftArray.forEach(function(customer) {
-   moveLeftToBuy(customer);
-   });
-} 
+function createNewCustomer(){
+	customerImg = document.createElement('img');
+	customerImg.setAttribute("id", `${passersby}`);
+	if (customerImg.id%2 == 0) {
+		customerImgRight = customerImg;
+		customerImgRight.src = "./img/huskieRight.gif";
+		customerImgRight.setAttribute("class", "customer" );
+		customerImgRight.setAttribute("id", `${passersby}`);
+		document.querySelector('#taco-truck-scene').appendChild(customerImgRight);
+		customerImgRight.style.position= 'absolute'; 
+		customerImgRight.style.top = '250px';
+		customerImgRight.style.left = '-140px';
+		customerRightArray.push(customerImgRight);
+		customerRightArray.forEach(function(customer) {
+			moveRightToBuy(customer);
+	   });
+	} else {
+		customerImgLeft = customerImg;
+		customerImgLeft.src = "./img/huskieLeft.gif";
+		customerImgLeft.setAttribute("class", "customer" );
+		customerImgLeft.setAttribute("id", `${passersby}`);
+		document.querySelector('#taco-truck-scene').appendChild(customerImgLeft);
+		customerImgLeft.style.position= 'absolute'; 
+		customerImgLeft.style.top = '250px';
+		customerImgLeft.style.right = '-145px';
+		customerLeftArray.push(customerImgLeft);
+		customerLeftArray.forEach(function(customer) {
+	  		moveLeftToBuy(customer);
+	   });
+	}
+}
 
 function moveRightToBuy(currentCustomer){
-    currentCustomer.classList.add("moving-right-to-buy");
+    currentCustomer.setAttribute("class", "moving-right-to-buy");
+    setTimeout(function(){
+    	buyATacoRight(currentCustomer)}, 3000);
 }
 
 function moveLeftToBuy(currentCustomer){
-    currentCustomer.classList.add("moving-left-to-buy");
+    currentCustomer.setAttribute("class", "moving-left-to-buy");
+    setTimeout(function(){
+    	buyATacoLeft(currentCustomer)}, 3000);
 }
 
+var left=0, game = document.getElementById('taco-truck-scene');
+
+function buyATacoRight(currentCustomer){
+	//remove moving-right-to-buy class
+	currentCustomer.removeAttribute('class', 'moving-right-to-buy');
+	currentCustomer.src = "./img/buyTacoRight.png";
+	currentCustomer.setAttribute("class", "stillBuyingRight")
+	//Also display a pop up diallog bubble
+	setTimeout(function(){
+		walkAwayWithTacoRight(currentCustomer)}, 2000);
+}
+
+function walkAwayWithTacoRight(currentCustomer) {
+	currentCustomer.removeAttribute("class", "stillBuyingRight")
+	currentCustomer.setAttribute("class", "moving-right-with-taco");
+	currentCustomer.src = "./img/withTacoRight.gif";
+}
+
+function buyATacoLeft(currentCustomer){
+	//remove moving-right-to-buy class
+	currentCustomer.removeAttribute('class', 'moving-left-to-buy');
+	currentCustomer.src = "./img/buyTacoLeft.png";
+	currentCustomer.setAttribute('class', 'stillBuyingLeft')
+	//Also display a pop up diallog bubble
+	setTimeout(function(){
+		walkAwayWithTacoLeft(currentCustomer)}, 2000);
+}
+
+function walkAwayWithTacoLeft(currentCustomer) {
+	currentCustomer.removeAttribute('class', 'stillBuyingLeft')
+	currentCustomer.setAttribute("class", "moving-left-with-taco");
+	currentCustomer.src = "./img/withTacoLeft.gif";
+}
 
 function endOfDay() {
 	disableButtons();

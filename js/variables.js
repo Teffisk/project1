@@ -15,7 +15,7 @@ let passersby;
 let customerBuyDelay = 2000;
 let newPassersbyInterval = 3000;
 let startDayDelay = 5000;
-let startingRep = 50;
+let startingRep = 100;
 let conversion;
 let dayCounter;
 let openingCountdown;

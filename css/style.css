@@ -49,28 +49,63 @@ button {
 
 @keyframes buyLeft {
 	from {right: -120px;}
-	to {right: 850px;}
+	to {right: 300px;}
 }
 
 .moving-left-to-buy {
 	animation-name: buyLeft;
-	animation-duration: 5s;
+	animation-duration: 3s;
 	position: absolute;
 	z-index: 2;
 }
 
 @keyframes buyRight {
 	from {left: -120px;}
-	to {left: 850px;}
+	to {left: 280px;}
 }
 
 .moving-right-to-buy {
-	animation-name: buyRight;
-	animation-duration: 5s;
+	animation-name: buyLeft;
+	animation-duration: 3s;
 	position: absolute;
 	z-index: 2;
 }
 
+@keyframes withTacoLeft {
+	from {right: 300px;}
+	to {right: 850px;}
+}
+
+.moving-left-with-taco {
+	animation-name: withTacoLeft;
+	animation-duration: 3s;
+	position: absolute;
+	z-index: 2;
+	/*right: 300px;*/
+}
+
+@keyframes withTacoRight {
+	from {left: 280px;}
+	to {left: 850px;}
+}
+
+.moving-right-with-taco {
+	animation-name: withTacoRight;
+	animation-duration: 3s;
+	position: absolute;
+	z-index: 2;
+	/*left: 280px;*/
+}
+
+.stillBuyingLeft {
+	top: 250px;
+	right: 300px;
+}
+
+.stillBuyingRight {
+	top: 250px;
+	left: 280px;
+}
 #taco-truck-scene {
 	position: relative;
 	font-family: 'Roboto', sans-serif;
