@@ -18,12 +18,17 @@ button {
 	z-index: 2;
 }
 
+.noncustomer {
+	position: absolute;
+	z-index: 2;
+}
+
 @keyframes strollLeft {
 	from {right: -120px;}
 	to {right: 850px;}
 }
 
-.moving-left {
+.moving-left-passerby {
 	animation-name: strollLeft;
 	animation-duration: 5s;
 	position: absolute;
@@ -35,8 +40,32 @@ button {
 	to {left: 850px;}
 }
 
-.moving-right {
+.moving-right-passerby {
 	animation-name: strollRight;
+	animation-duration: 5s;
+	position: absolute;
+	z-index: 2;
+}
+
+@keyframes buyLeft {
+	from {right: -120px;}
+	to {right: 850px;}
+}
+
+.moving-left-to-buy {
+	animation-name: buyLeft;
+	animation-duration: 5s;
+	position: absolute;
+	z-index: 2;
+}
+
+@keyframes buyRight {
+	from {left: -120px;}
+	to {left: 850px;}
+}
+
+.moving-right-to-buy {
+	animation-name: buyRight;
 	animation-duration: 5s;
 	position: absolute;
 	z-index: 2;

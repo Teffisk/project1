@@ -19,9 +19,15 @@ let startingRep = 50;
 let conversion;
 let dayCounter;
 let openingCountdown;
-let customerImg;
+let customerImgRight;
+let customerImgLeft
+let noncustomerImgRight;
+let noncustomerImgLeft;
+let noncustomerRightArray = [];
+let noncustomerLeftArray = [];
 let customerRightArray = [];
 let customerLeftArray = [];
+let newCust;
 
 
 

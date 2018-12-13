@@ -44,7 +44,6 @@ function startNewGame() {
 	adjustChanceToBuy();
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
-	// setTimeout(customersStart, newPassersbyInterval);
 	setTimeout(function(){
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
 	}, startDayDelay);
@@ -83,74 +82,148 @@ function startNewDay() {
 	move();
 	truckOpen = true;
 	adjustChanceToBuy();
-	newPasserby();
 }
 
 function newPasserby(){
 	if (truckOpen == false){
-		clearTimeout(newCust);
+		//clearTimeout(newCust);
 		clearInterval(customersStart);
 	} else {
 	passersby++;
 	checkInv();
 	console.log("I'm walking by");
-	var newCust = setTimeout(toBuyOrNotToBuy, customerBuyDelay);
-	createNewCustomer();
+	let x = Math.random();
+	console.log("Chance to buy is: "+(chanceToBuy)+"%")
+	if(x > (1-(chanceToBuy/100))) {
+		console.log("total orders is: "+totalOrders+" conv rate is: "+conversion);
+		console.log("I will buy a taco");
+		createNewCustomer();
+		newCust = setTimeout(whichTaco, customerBuyDelay);
+
+	} else {
+		//Customer walks away
+		console.log("I'm not buying");
+		createNewNoncustomer();
+	}
+	//var newCust = setTimeout(toBuyOrNotToBuy, customerBuyDelay);
+	calcConv();
 	updateTheDom();
+	}
+}
+
+// function toBuyOrNotToBuy(){
+	
+// }
+
+function createNewNoncustomer(){
+	if (passersby%2==0) {
+		noncustomerImgRight = document.createElement('img');
+		noncustomerImgRight.src = "./img/huskieRight.gif";
+		noncustomerImgRight.setAttribute("class", "noncustomer" );
+		document.querySelector('#taco-truck-scene').appendChild(noncustomerImgRight);
+		noncustomerImgRight.style.position= 'absolute'; 
+		noncustomerImgRight.style.top = '250px';
+		noncustomerImgRight.style.left = '-140px';
+		noncustomerRightArray.push(noncustomerImgRight);
+		noncustomerRightArray.forEach(function(customer) {
+		moveRightPasserby(customer);})
+		} else {
+	noncustomerImgLeft = document.createElement('img');
+	noncustomerImgLeft.src = "./img/huskieLeft.gif";
+	noncustomerImgLeft.setAttribute("class", "noncustomer" );
+	document.querySelector('#taco-truck-scene').appendChild(noncustomerImgLeft);
+	noncustomerImgLeft.style.position= 'absolute'; 
+	noncustomerImgLeft.style.top = '250px';
+	noncustomerImgLeft.style.right = '-140px';
+	noncustomerLeftArray.push(noncustomerImgLeft);
+	noncustomerLeftArray.forEach(function(customer) {
+		moveLeftPasserby(customer);
+		});
 	}
 }
 
 function createNewCustomer(){
 	if (passersby%2==0) {
 	customerImgRight = document.createElement('img');
-	customerImgRight.src = "./img/huskieRight.gif";
+	customerImgRight.src = "./img/withTacoRight.gif";
 	customerImgRight.setAttribute("class", "customer" );
 	document.querySelector('#taco-truck-scene').appendChild(customerImgRight);
-	walkRight();
+	customerImgRight.style.position= 'absolute'; 
+	customerImgRight.style.top = '250px';
+	customerImgRight.style.left = '-140px';
+	customerRightArray.push(customerImgRight);
+	customerRightArray.forEach(function(customer) {
+		moveRightToBuy(customer);
+   });
 	} else {
 	customerImgLeft = document.createElement('img');
-	customerImgLeft.src = "./img/huskieLeft.gif";
+	customerImgLeft.src = "./img/withTacoLeft.gif";
 	customerImgLeft.setAttribute("class", "customer" );
 	document.querySelector('#taco-truck-scene').appendChild(customerImgLeft);
-	walkLeft();
+	customerImgLeft.style.position= 'absolute'; 
+	customerImgLeft.style.top = '250px';
+	customerImgLeft.style.right = '-140px';
+	customerLeftArray.push(customerImgLeft);
+	customerLeftArray.forEach(function(customer) {
+  		moveLeftToBuy(customer);
+   });
 	}
 }
 
-var animate, left=0, game = document.getElementById('taco-truck-scene');
+var left=0, game = document.getElementById('taco-truck-scene');
 
-function walkRight(){
-   customerImgRight.style.position= 'absolute'; 
-   customerImgRight.style.top = '250px';
-   customerImgRight.style.left = '-140px';
-   // customerImg.style.visibility='hidden';
-   customerRightArray.push(customerImgRight);
-   customerRightArray.forEach(function(customer) {
-   moveRight(customer);
-   });
+// function walkRightPasserby(){
+//    customerImgRight.style.position= 'absolute'; 
+//    customerImgRight.style.top = '250px';
+//    customerImgRight.style.left = '-140px';
+//    // customerImg.style.visibility='hidden';
+//    customerRightArray.push(customerImgRight);
+//    customerRightArray.forEach(function(customer) {
+//    moveRightPasserby(customer);
+//    });
+// } 
+
+// function walkLeftPasserby(){
+//    customerImgLeft.style.position= 'absolute'; 
+//    customerImgLeft.style.top = '250px';
+//    customerImgLeft.style.right = '-140px';
+//    // customerImg.style.visibility='hidden';
+//    customerLeftArray.push(customerImgLeft);
+//    customerLeftArray.forEach(function(customer) {
+//    moveLeftPasserby(customer);
+//    });
+// } 
+
+function moveRightPasserby(currentCustomer){
+    currentCustomer.classList.add("moving-right-passerby");
+}
+
+function moveLeftPasserby(currentCustomer){
+    currentCustomer.classList.add("moving-left-passerby");
+}
+
+function walkRightToBuy(){
+
 } 
 
-function walkLeft(){
+function walkLeftToBuy(){
    customerImgLeft.style.position= 'absolute'; 
    customerImgLeft.style.top = '250px';
    customerImgLeft.style.right = '-140px';
-   // customerImg.style.visibility='hidden';
    customerLeftArray.push(customerImgLeft);
    customerLeftArray.forEach(function(customer) {
-   moveLeft(customer);
+   moveLeftToBuy(customer);
    });
 } 
 
-function moveRight(currentCustomer){
-    currentCustomer.classList.add("moving-right");
+function moveRightToBuy(currentCustomer){
+    currentCustomer.classList.add("moving-right-to-buy");
 }
 
-function moveLeft(currentCustomer){
-    currentCustomer.classList.add("moving-left");
+function moveLeftToBuy(currentCustomer){
+    currentCustomer.classList.add("moving-left-to-buy");
 }
 
-function stop(){
-   clearTimeout(animate);
-}
 
 function endOfDay() {
 	disableButtons();
@@ -183,21 +256,7 @@ function checkInv() {
 
 //Random chance of whether or not a customer will buy
 //Function of Math.random(0-1), greater than .5 means they will buy, then run the whichTaco function (later this point of purchase can be manipulated by reputation and advertising)
-function toBuyOrNotToBuy(){
-	let x = Math.random();
-	console.log("Chance to buy is: "+(chanceToBuy)+"%")
-	if(x > (1-(chanceToBuy/100))) {
-		console.log("I'm getting a taco");
-		calcConv();
-		console.log("total orders is: "+totalOrders+" conv rate is: "+conversion)
-		whichTaco();
 
-	} else {
-		//Customer walks away
-		console.log("I'm not buying")
-		return;
-	}
-}
 
 //Random assignment of what kind of taco they want
 //Function of Math.random (0-1) < .4 = steak, .4 - .8 = chicken, > .8 = avocado
@@ -211,6 +270,7 @@ function whichTaco(){
 			//Reduce Reputation
 			dingRep();
 			adjustChanceToBuy();
+
 			updateTheDom();
 			return;
 		}
