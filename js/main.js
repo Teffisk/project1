@@ -47,7 +47,7 @@ function startNewGame() {
 	setTimeout(function(){
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
 	}, startDayDelay);
-	move();
+	let startGameDelay = setTimeout(move, startDayDelay);
 }
 
 function adjustChanceToBuy(){
@@ -79,7 +79,7 @@ function startNewDay() {
 	setTimeout(function(){
 		customersStart = setInterval(newPasserby, newPassersbyInterval);
 	}, startDayDelay);
-	move();
+	let dayDelay = setTimeout(move, startDayDelay);
 	truckOpen = true;
 	adjustChanceToBuy();
 }
@@ -234,6 +234,7 @@ function endOfDay() {
 	eodSplash.setAttribute("class", "end-of-day" );
 	// Add some text
 	if(score <= 0) {
+		//displsy: none => display: block
 		eodSplash.appendChild( document.createTextNode(`Yikes, your business is on the rails! See if you can do better tomorrow! Click here to start the next day.     Money in the account: $${account-startingAccount}. Reputation: ${reputation.toFixed(1)}. Customer Conversion Rate: ${(conversion*100).toFixed(1)}%. Score: ${score}.`) );}
 		else if (score > 0 && score < 50){
 		eodSplash.appendChild( document.createTextNode(`Congratulations, you survived the day! See if you can do even better tomorrow! Click here to start the next day.     Money in the account: $${account-startingAccount}. Reputation: ${reputation.toFixed(1)}. Customer Conversion Rate: ${(conversion*100).toFixed(1)}%. Score: ${score}.`) );}
