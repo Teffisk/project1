@@ -85,14 +85,15 @@ function startNewDay() {
 }
 
 function newPasserbyAppear(){
+	let newPasserby = {};
 	if (truckOpen == false){
 		//clearTimeout(newCust);
 		clearInterval(customersStart);
 	} else {
 	passersby++;
+	newPasserby.number = passersby;
 	console.log("I'm walking by");
 	checkInv();
-	//newPasserby = {};
 	if (passersby%2 == 0) {
 		newPasserby.direction = "right";
 	} else {
@@ -233,6 +234,8 @@ function walkAwayWithTacoRight(currentCustomer) {
 	currentCustomer.removeAttribute("class", "stillBuyingRight")
 	currentCustomer.setAttribute("class", "moving-right-with-taco");
 	currentCustomer.src = "./img/withTacoRight.gif";
+	setTimeout(function(){
+		deleteCustomer(currentCustomer);}, 3000);
 }
 
 function buyATacoLeft(currentCustomer){
@@ -250,6 +253,14 @@ function walkAwayWithTacoLeft(currentCustomer) {
 	currentCustomer.removeAttribute('class', 'stillBuyingLeft')
 	currentCustomer.setAttribute("class", "moving-left-with-taco");
 	currentCustomer.src = "./img/withTacoLeft.gif";
+	setTimeout(function(){
+		deleteCustomer(currentCustomer);}, 3000);
+}
+
+function deleteCustomer(currentCustomer){
+	passersbyArray.pop(currentCustomer);
+	console.log(passersbyArray);
+	document.querySelector('#taco-truck-scene').removeChild(currentCustomer);
 }
 
 function endOfDay() {
