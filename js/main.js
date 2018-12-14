@@ -91,9 +91,10 @@ function newPasserbyAppear(){
 		clearInterval(customersStart);
 	} else {
 	passersby++;
+	updateTheDom();
 	newPasserby.number = passersby;
 	console.log("I'm walking by");
-	checkInv();
+	//checkInv();
 	if (passersby%2 == 0) {
 		newPasserby.direction = "right";
 	} else {
@@ -101,102 +102,133 @@ function newPasserbyAppear(){
 	}
 	let x = Math.random();
 	if(x > (1-(chanceToBuy/100))) {
-		newPasserby.type = "customer";
+		newPasserby.behavior = "customer";
 		console.log("I will buy a taco");
 	} else {
 		//Customer walks away
 		console.log("I'm not buying");
-		newPasserby.type = "noncustomer";
+		newPasserby.behavior = "noncustomer";
 	}
-	if (newPasserby.type == "customer") {
+	if (newPasserby.behavior == "customer") {
 		let x = Math.random();
 		console.log(x);
 		if (x < .4) {
 			console.log("I'd like one chicken taco");
-			newPasserby.taco = "chicken";
-			if (chickenInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
-				console.log("Aw, bummer, you are out of chicken tacos. I'm leaving");
+			if (chickenInv <= 0|| salsaInv <= 0 || tortillaInv <= 0) {
+				console.log("Aw, you are out of chicken tacos!");
+				newPasserby.speech = "outOfChicken";
+				newPasserby.taco = "chicken";
 				dingRep();
 				adjustChanceToBuy();
 				updateTheDom();
-				return;
-			}
+			} else {
+			newPasserby.speech = "orderChicken"
+			newPasserby.taco = "chicken";
 			placeChickenOrder();
 			improveRep();
 			adjustChanceToBuy();
+			}
 		} else if (x > .8) {
 			console.log("I'd like one avocado taco");
-			newPasserby.taco = "avocado";
-			if (avocadoInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
+			if (avocadoInv <= 0|| salsaInv <= 0 || tortillaInv <= 0) {
 				console.log("Aw, bummer, you are out of avocado tacos. I'm leaving");
+				newPasserby.speech = "outOfAvocado";
+				newPasserby.taco = "avocado";
 				dingRep();
 				adjustChanceToBuy();
 				updateTheDom();
-				return;
-			}
+			} else {
 			placeAvocadoOrder();
 			improveRep();
 			adjustChanceToBuy();
+			newPasserby.speech = "orderAvocado"
+			newPasserby.taco = "avocado";
+			}
 		} else {
 			console.log("I'd like one steak taco");
-			newPasserby.taco = "steak";
 			if (steakInv <= 0 || salsaInv <= 0 || tortillaInv <= 0) {
 				console.log("Aw, bummer, you are out of steak tacos. I'm leaving");
+				newPasserby.speech = "outOfSteak";
+				newPasserby.taco = "steak";
 				dingRep();
 				adjustChanceToBuy();
 				updateTheDom();
-				return;
-			}
+			} else {
 			placeSteakOrder();
 			improveRep();
 			adjustChanceToBuy();
+			newPasserby.speech = "orderSteak"
+			newPasserby.taco = "steak";
 		}
 	}
 	calcConv();
 	updateTheDom();
 	}
 	console.log(newPasserby);
+
 	passersbyArray.push(newPasserby);
+
 	passersbyArray.forEach(function(){
-		if (newPasserby.type == "customer" && newPasserby.direction == "right") {
-			let customerImgRight = document.createElement('img');
-			customerImgRight.src = "./img/huskieRight.gif";
-			customerImgRight.setAttribute("class", "customer" );
-			document.querySelector('#taco-truck-scene').appendChild(customerImgRight);
-			customerImgRight.style.position= 'absolute'; 
-			customerImgRight.style.top = '250px';
-			customerImgRight.style.left = '-140px';
-			moveRightToBuy(customerImgRight);
-		} else if (newPasserby.type == "customer" && newPasserby.direction == "left") {
-			let customerImgLeft = document.createElement('img');
-			customerImgLeft.src = "./img/huskieLeft.gif";
-			customerImgLeft.setAttribute("class", "customer" );
-			document.querySelector('#taco-truck-scene').appendChild(customerImgLeft);
-			customerImgLeft.style.position= 'absolute'; 
-			customerImgLeft.style.top = '250px';
-			customerImgLeft.style.right = '-140px';
-			moveLeftToBuy(customerImgLeft);
-		} else if (newPasserby.type == "noncustomer" && newPasserby.direction == "right") {
-			let noncustomerImgRight = document.createElement('img');
-			noncustomerImgRight.src = "./img/huskieRight.gif";
-			noncustomerImgRight.setAttribute("class", "customer" );
-			document.querySelector('#taco-truck-scene').appendChild(noncustomerImgRight);
-			noncustomerImgRight.style.position= 'absolute'; 
-			noncustomerImgRight.style.top = '250px';
-			noncustomerImgRight.style.left = '-140px';
-			moveRightPasserby(noncustomerImgRight);
-		} else if (newPasserby.type == "noncustomer" && newPasserby.direction == "left") {
-			let noncustomerImgLeft = document.createElement('img');
-			noncustomerImgLeft.src = "./img/huskieLeft.gif";
-			noncustomerImgLeft.setAttribute("class", "customer" );
-			document.querySelector('#taco-truck-scene').appendChild(noncustomerImgLeft);
-			noncustomerImgLeft.style.position= 'absolute'; 
-			noncustomerImgLeft.style.top = '250px';
-			noncustomerImgLeft.style.right = '-140px';
-			moveLeftPasserby(noncustomerImgLeft);
-		}
-	})
-};
+		let passerby = passersbyArray[passersby-1];
+		console.log("I am customer number: "+ passerby.number+"and I am walking: "+passerby.direction)
+		if (passerby.behavior == "customer" && passerby.direction == "right") {
+			passerby = document.createElement('img');
+			passerby.src = "./img/huskieRight.gif";
+			passerby.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(passerby);
+			passerby.style.position= 'absolute'; 
+			passerby.style.top = '250px';
+			passerby.style.left = '-140px';
+			passerby.taco = newPasserby.taco;
+			passerby.direction = newPasserby.direction;
+			passerby.speech = newPasserby.speech;
+			passerby.number = newPasserby.number;
+			moveRightToBuy(passerby);
+		} else if (passerby.behavior == "customer" && passerby.direction == "left") {
+			passerby = document.createElement('img');
+			passerby.src = "./img/huskieLeft.gif";
+			passerby.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(passerby);
+			passerby.style.position= 'absolute'; 
+			passerby.style.top = '250px';
+			passerby.style.right = '-140px';
+			passerby.taco = newPasserby.taco;
+			passerby.direction = newPasserby.direction;
+			passerby.speech = newPasserby.speech;
+			passerby.number = newPasserby.number;
+			moveLeftToBuy(passerby);
+		} else if (passerby.behavior == "noncustomer" && passerby.direction == "right") {
+			passerby = document.createElement('img');
+			passerby.src = "./img/huskieRight.gif";
+			passerby.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(passerby);
+			passerby.style.position= 'absolute'; 
+			passerby.style.top = '250px';
+			passerby.style.left = '-140px';
+			passerby.taco = newPasserby.taco;
+			passerby.direction = newPasserby.direction;
+			passerby.speech = newPasserby.speech;
+			passerby.number = newPasserby.number;
+			moveRightPasserby(passerby);
+		} else if (passerby.behavior == "noncustomer" && passerby.direction == "left") {
+			passerby = document.createElement('img');
+			passerby.src = "./img/huskieLeft.gif";
+			passerby.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(passerby);
+			passerby.style.position= 'absolute'; 
+			passerby.style.top = '250px';
+			passerby.style.right = '-140px';
+			passerby.taco = newPasserby.taco;
+			passerby.direction = newPasserby.direction;
+			passerby.speech = newPasserby.speech;
+			passerby.number = newPasserby.number;
+			moveLeftPasserby(passerby);
+			}
+		})
+	};
+}
+
+var left=0, game = document.getElementById('taco-truck-scene');
 
 function moveRightPasserby(currentCustomer){
     currentCustomer.classList.add("moving-right-passerby");
@@ -212,22 +244,18 @@ function moveRightToBuy(currentCustomer){
     	buyATacoRight(currentCustomer)}, 3000);
 }
 
-function moveLeftToBuy(currentCustomer){
-    currentCustomer.setAttribute("class", "moving-left-to-buy");
-    setTimeout(function(){
-    	buyATacoLeft(currentCustomer)}, 3000);
-}
-
-var left=0, game = document.getElementById('taco-truck-scene');
-
 function buyATacoRight(currentCustomer){
-	//remove moving-right-to-buy class
-	//currentCustomer.removeAttribute('class', 'moving-right-to-buy');
 	currentCustomer.src = "./img/stillRight.png";
-	currentCustomer.setAttribute("class", "stillBuyingRight")
-	//Also display a pop up diallog bubble
-	setTimeout(function(){
-		walkAwayWithTacoRight(currentCustomer)}, 2000);
+	currentCustomer.setAttribute("class", "stillBuyingRight");
+	//Also display a pop up dialog bubble
+	console.log("My properties are "+Object.values(currentCustomer));
+	if (currentCustomer.speech == "orderChicken" || currentCustomer.speech == "orderSteak" || currentCustomer.speech == "orderAvocado") {
+		setTimeout(function(){
+			walkAwayWithTacoRight(currentCustomer)}, 2000);
+	} else {
+		setTimeout(function(){
+			walkAwayWithoutTacoRight(currentCustomer)}, 2000);
+	}
 }
 
 function walkAwayWithTacoRight(currentCustomer) {
@@ -238,16 +266,33 @@ function walkAwayWithTacoRight(currentCustomer) {
 		deleteCustomer(currentCustomer);}, 3000);
 }
 
+function walkAwayWithoutTacoRight(currentCustomer) {
+	currentCustomer.removeAttribute("class", "stillBuyingRight")
+	currentCustomer.setAttribute("class", "moving-right-with-taco");
+	currentCustomer.src = "./img/huskieRight.gif";
+	setTimeout(function(){
+		deleteCustomer(currentCustomer);}, 3000);
+}
+
+function moveLeftToBuy(currentCustomer){
+    currentCustomer.setAttribute("class", "moving-left-to-buy");
+    setTimeout(function(){
+    	buyATacoLeft(currentCustomer)}, 3000);
+}
+
 function buyATacoLeft(currentCustomer){
-	//remove moving-right-to-buy class
-	//currentCustomer.removeAttribute('class', 'moving-left-to-buy');
 	currentCustomer.src = "./img/stillLeft.png";
-	//document.querySelector('#taco-truck-scene').appendChild(currentCustomer);
 	currentCustomer.setAttribute('class', 'stillBuyingLeft')
 	//Also display a pop up dialog bubble
-	setTimeout(function(){
-		walkAwayWithTacoLeft(currentCustomer)}, 2000);
-}
+	console.log("My properties are "+Object.values(currentCustomer));
+	if (currentCustomer.speech == "orderChicken" || currentCustomer.speech == "orderSteak" || currentCustomer.speech == "orderAvocado") {
+		setTimeout(function(){
+			walkAwayWithTacoLeft(currentCustomer)}, 2000);
+	} else {
+		setTimeout(function(){
+			walkAwayWithoutTacoLeft(currentCustomer)}, 2000);
+	}
+} 
 
 function walkAwayWithTacoLeft(currentCustomer) {
 	currentCustomer.removeAttribute('class', 'stillBuyingLeft')
@@ -257,17 +302,21 @@ function walkAwayWithTacoLeft(currentCustomer) {
 		deleteCustomer(currentCustomer);}, 3000);
 }
 
+function walkAwayWithoutTacoLeft(currentCustomer) {
+	currentCustomer.removeAttribute('class', 'stillBuyingLeft')
+	currentCustomer.setAttribute("class", "moving-left-with-taco");
+	currentCustomer.src = "./img/huskieLeft.gif";
+	setTimeout(function(){
+		deleteCustomer(currentCustomer);}, 3000);
+}
+
 function deleteCustomer(currentCustomer){
-	passersbyArray.pop(currentCustomer);
-	console.log(passersbyArray);
+	// passersbyArray.splice(currentCustomer.number - 1, 1);
+	//passersbyArray.pop();
 	document.querySelector('#taco-truck-scene').removeChild(currentCustomer);
 }
 
 function endOfDay() {
-	// allCustomers = document.querySelectorAll('.customer');
-	// for (var i = 0; i<allCustomers.length; i++) {
-	// 	allCustomers[i].className = '';
-	// };
 	disableButtons();
 	console.log(truckOpen);
 	calcConv();
@@ -303,54 +352,54 @@ function checkInv() {
 
 //Random assignment of what kind of taco they want
 //Function of Math.random (0-1) < .4 = steak, .4 - .8 = chicken, > .8 = avocado
-function whichTaco(){
-	let x = Math.random();
-	console.log(x);
-	if (x < .4) {
-		console.log("I'd like one chicken taco");
-		if (chickenInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
-			console.log("Aw, bummer, you are out of chicken tacos. I'm leaving");
-			//Reduce Reputation
-			dingRep();
-			adjustChanceToBuy();
+// function whichTaco(){
+// 	let x = Math.random();
+// 	console.log(x);
+// 	if (x < .4) {
+// 		console.log("I'd like one chicken taco");
+// 		if (chickenInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
+// 			console.log("Aw, bummer, you are out of chicken tacos. I'm leaving");
+// 			//Reduce Reputation
+// 			dingRep();
+// 			adjustChanceToBuy();
 
-			updateTheDom();
-			return;
-		}
-		placeChickenOrder();
-		//Increase reputation
-		improveRep();
-		adjustChanceToBuy();
-	} else if (x > .8) {
-		console.log("I'd like one avocado taco");
-		if (avocadoInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
-			console.log("Aw, bummer, you are out of avocado tacos. I'm leaving");
-			//Reduce reputation
-			dingRep();
-			adjustChanceToBuy();
-			updateTheDom();
-			return;
-		}
-		placeAvocadoOrder();
-		//Increase reputation
-		improveRep();
-		adjustChanceToBuy();
-	} else {
-		console.log("I'd like one steak taco");
-		if (steakInv <= 0 || salsaInv <= 0 || tortillaInv <= 0) {
-			console.log("Aw, bummer, you are out of steak tacos. I'm leaving");
-			//Reduce reputation
-			dingRep();
-			adjustChanceToBuy();
-			updateTheDom();
-			return;
-		}
-		placeSteakOrder();
-		//Increase reputation
-		improveRep();
-		adjustChanceToBuy();
-	}
-};
+// 			updateTheDom();
+// 			return;
+// 		}
+// 		placeChickenOrder();
+// 		//Increase reputation
+// 		improveRep();
+// 		adjustChanceToBuy();
+// 	} else if (x > .8) {
+// 		console.log("I'd like one avocado taco");
+// 		if (avocadoInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
+// 			console.log("Aw, bummer, you are out of avocado tacos. I'm leaving");
+// 			//Reduce reputation
+// 			dingRep();
+// 			adjustChanceToBuy();
+// 			updateTheDom();
+// 			return;
+// 		}
+// 		placeAvocadoOrder();
+// 		//Increase reputation
+// 		improveRep();
+// 		adjustChanceToBuy();
+// 	} else {
+// 		console.log("I'd like one steak taco");
+// 		if (steakInv <= 0 || salsaInv <= 0 || tortillaInv <= 0) {
+// 			console.log("Aw, bummer, you are out of steak tacos. I'm leaving");
+// 			//Reduce reputation
+// 			dingRep();
+// 			adjustChanceToBuy();
+// 			updateTheDom();
+// 			return;
+// 		}
+// 		placeSteakOrder();
+// 		//Increase reputation
+// 		improveRep();
+// 		adjustChanceToBuy();
+// 	}
+// };
 
 function placeChickenOrder() {
 	account = account + chickenTacoPrice;

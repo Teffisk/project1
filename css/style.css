@@ -281,7 +281,7 @@ button {
 	font-size: 12px;
 }
 
-#order-steak-dialog {
+#speech-bubble {
 	height: 100px;
 	width: 100px;
 	background-image: url("../img/dialog-bubble.png");
@@ -290,7 +290,7 @@ button {
 	position: absolute;
 	right: 350px;
 	top: 150px;
-	z-index: -2;
+	z-index: 2;
 	text-align: center;
 	align-items: center;
 }

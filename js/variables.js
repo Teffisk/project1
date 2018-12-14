@@ -26,7 +26,7 @@ let customerRightArray = [];
 let customerLeftArray = [];
 let newCust;
 let passersbyArray = [];
-//let newPasserby = {};
+let speechBubble;
 
 
 //Food prices
