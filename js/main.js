@@ -45,7 +45,7 @@ function startNewGame() {
 	updateTheDom();
 	//Give the player 10 secs to stock up before customers come by
 	setTimeout(function(){
-		customersStart = setInterval(newPasserby, newPassersbyInterval);
+		customersStart = setInterval(newPasserbyAppear, newPassersbyInterval);
 	}, startDayDelay);
 	let startGameDelay = setTimeout(move, startDayDelay);
 }
@@ -77,70 +77,125 @@ function startNewDay() {
 	updateTheDom();
 	//Give the player some secs to stock up before customers come by
 	setTimeout(function(){
-		customersStart = setInterval(newPasserby, newPassersbyInterval);
+		customersStart = setInterval(newPasserbyAppear, newPassersbyInterval);
 	}, startDayDelay);
 	let dayDelay = setTimeout(move, startDayDelay);
 	truckOpen = true;
 	adjustChanceToBuy();
 }
 
-function newPasserby(){
+function newPasserbyAppear(){
 	if (truckOpen == false){
 		//clearTimeout(newCust);
 		clearInterval(customersStart);
 	} else {
 	passersby++;
-	checkInv();
 	console.log("I'm walking by");
+	checkInv();
+	//newPasserby = {};
+	if (passersby%2 == 0) {
+		newPasserby.direction = "right";
+	} else {
+		newPasserby.direction = "left";
+	}
 	let x = Math.random();
-	console.log("Chance to buy is: "+(chanceToBuy)+"%")
 	if(x > (1-(chanceToBuy/100))) {
-		console.log("total orders is: "+totalOrders+" conv rate is: "+conversion);
+		newPasserby.type = "customer";
 		console.log("I will buy a taco");
-		createNewCustomer();
-		newCust = setTimeout(whichTaco, customerBuyDelay);
-
 	} else {
 		//Customer walks away
 		console.log("I'm not buying");
-		createNewNoncustomer();
+		newPasserby.type = "noncustomer";
 	}
-	//var newCust = setTimeout(toBuyOrNotToBuy, customerBuyDelay);
+	if (newPasserby.type == "customer") {
+		let x = Math.random();
+		console.log(x);
+		if (x < .4) {
+			console.log("I'd like one chicken taco");
+			newPasserby.taco = "chicken";
+			if (chickenInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
+				console.log("Aw, bummer, you are out of chicken tacos. I'm leaving");
+				dingRep();
+				adjustChanceToBuy();
+				updateTheDom();
+				return;
+			}
+			placeChickenOrder();
+			improveRep();
+			adjustChanceToBuy();
+		} else if (x > .8) {
+			console.log("I'd like one avocado taco");
+			newPasserby.taco = "avocado";
+			if (avocadoInv == 0|| salsaInv <= 0 || tortillaInv <= 0) {
+				console.log("Aw, bummer, you are out of avocado tacos. I'm leaving");
+				dingRep();
+				adjustChanceToBuy();
+				updateTheDom();
+				return;
+			}
+			placeAvocadoOrder();
+			improveRep();
+			adjustChanceToBuy();
+		} else {
+			console.log("I'd like one steak taco");
+			newPasserby.taco = "steak";
+			if (steakInv <= 0 || salsaInv <= 0 || tortillaInv <= 0) {
+				console.log("Aw, bummer, you are out of steak tacos. I'm leaving");
+				dingRep();
+				adjustChanceToBuy();
+				updateTheDom();
+				return;
+			}
+			placeSteakOrder();
+			improveRep();
+			adjustChanceToBuy();
+		}
+	}
 	calcConv();
 	updateTheDom();
 	}
-}
-
-function createNewNoncustomer(){
-	noncustomerImg = document.createElement('img');
-	noncustomerImg.setAttribute("id", `${passersby}`);
-	if (noncustomerImg.id%2 == 0) {
-		noncustomerImgRight = noncustomerImg;
-		noncustomerImgRight = document.createElement('img');
-		noncustomerImgRight.src = "./img/huskieRight.gif";
-		noncustomerImgRight.setAttribute("class", "noncustomer" );
-		document.querySelector('#taco-truck-scene').appendChild(noncustomerImgRight);
-		noncustomerImgRight.style.position= 'absolute'; 
-		noncustomerImgRight.style.top = '250px';
-		noncustomerImgRight.style.left = '-140px';
-		noncustomerRightArray.push(noncustomerImgRight);
-		noncustomerRightArray.forEach(function(customer) {
-		moveRightPasserby(customer);})
-	} else  if (noncustomerImg.id%2 != 0) {
-		noncustomerImgLeft = noncustomerImg;
-		noncustomerImgLeft = document.createElement('img');
-		noncustomerImgLeft.src = "./img/huskieLeft.gif";
-		noncustomerImgLeft.setAttribute("class", "noncustomer" );
-		document.querySelector('#taco-truck-scene').appendChild(noncustomerImgLeft);
-		noncustomerImgLeft.style.position= 'absolute'; 
-		noncustomerImgLeft.style.top = '250px';
-		noncustomerImgLeft.style.right = '-140px';
-		noncustomerLeftArray.push(noncustomerImgLeft);
-		noncustomerLeftArray.forEach(function(customer) {
-			moveLeftPasserby(customer);
-			});
-	}
-}
+	console.log(newPasserby);
+	passersbyArray.push(newPasserby);
+	passersbyArray.forEach(function(){
+		if (newPasserby.type == "customer" && newPasserby.direction == "right") {
+			let customerImgRight = document.createElement('img');
+			customerImgRight.src = "./img/huskieRight.gif";
+			customerImgRight.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(customerImgRight);
+			customerImgRight.style.position= 'absolute'; 
+			customerImgRight.style.top = '250px';
+			customerImgRight.style.left = '-140px';
+			moveRightToBuy(customerImgRight);
+		} else if (newPasserby.type == "customer" && newPasserby.direction == "left") {
+			let customerImgLeft = document.createElement('img');
+			customerImgLeft.src = "./img/huskieLeft.gif";
+			customerImgLeft.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(customerImgLeft);
+			customerImgLeft.style.position= 'absolute'; 
+			customerImgLeft.style.top = '250px';
+			customerImgLeft.style.right = '-140px';
+			moveLeftToBuy(customerImgLeft);
+		} else if (newPasserby.type == "noncustomer" && newPasserby.direction == "right") {
+			let noncustomerImgRight = document.createElement('img');
+			noncustomerImgRight.src = "./img/huskieRight.gif";
+			noncustomerImgRight.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(noncustomerImgRight);
+			noncustomerImgRight.style.position= 'absolute'; 
+			noncustomerImgRight.style.top = '250px';
+			noncustomerImgRight.style.left = '-140px';
+			moveRightPasserby(noncustomerImgRight);
+		} else if (newPasserby.type == "noncustomer" && newPasserby.direction == "left") {
+			let noncustomerImgLeft = document.createElement('img');
+			noncustomerImgLeft.src = "./img/huskieLeft.gif";
+			noncustomerImgLeft.setAttribute("class", "customer" );
+			document.querySelector('#taco-truck-scene').appendChild(noncustomerImgLeft);
+			noncustomerImgLeft.style.position= 'absolute'; 
+			noncustomerImgLeft.style.top = '250px';
+			noncustomerImgLeft.style.right = '-140px';
+			moveLeftPasserby(noncustomerImgLeft);
+		}
+	})
+};
 
 function moveRightPasserby(currentCustomer){
     currentCustomer.classList.add("moving-right-passerby");
@@ -148,38 +203,6 @@ function moveRightPasserby(currentCustomer){
 
 function moveLeftPasserby(currentCustomer){
     currentCustomer.classList.add("moving-left-passerby");
-}
-
-function createNewCustomer(){
-	customerImg = document.createElement('img');
-	customerImg.setAttribute("id", `${passersby}`);
-	if (customerImg.id%2 == 0) {
-		customerImgRight = customerImg;
-		customerImgRight.src = "./img/huskieRight.gif";
-		customerImgRight.setAttribute("class", "customer" );
-		customerImgRight.setAttribute("id", `${passersby}`);
-		document.querySelector('#taco-truck-scene').appendChild(customerImgRight);
-		customerImgRight.style.position= 'absolute'; 
-		customerImgRight.style.top = '250px';
-		customerImgRight.style.left = '-140px';
-		customerRightArray.push(customerImgRight);
-		customerRightArray.forEach(function(customer) {
-			moveRightToBuy(customer);
-	   });
-	} else {
-		customerImgLeft = customerImg;
-		customerImgLeft.src = "./img/huskieLeft.gif";
-		customerImgLeft.setAttribute("class", "customer" );
-		customerImgLeft.setAttribute("id", `${passersby}`);
-		document.querySelector('#taco-truck-scene').appendChild(customerImgLeft);
-		customerImgLeft.style.position= 'absolute'; 
-		customerImgLeft.style.top = '250px';
-		customerImgLeft.style.right = '-145px';
-		customerLeftArray.push(customerImgLeft);
-		customerLeftArray.forEach(function(customer) {
-	  		moveLeftToBuy(customer);
-	   });
-	}
 }
 
 function moveRightToBuy(currentCustomer){
@@ -198,8 +221,8 @@ var left=0, game = document.getElementById('taco-truck-scene');
 
 function buyATacoRight(currentCustomer){
 	//remove moving-right-to-buy class
-	currentCustomer.removeAttribute('class', 'moving-right-to-buy');
-	currentCustomer.src = "./img/buyTacoRight.png";
+	//currentCustomer.removeAttribute('class', 'moving-right-to-buy');
+	currentCustomer.src = "./img/stillRight.png";
 	currentCustomer.setAttribute("class", "stillBuyingRight")
 	//Also display a pop up diallog bubble
 	setTimeout(function(){
@@ -214,10 +237,11 @@ function walkAwayWithTacoRight(currentCustomer) {
 
 function buyATacoLeft(currentCustomer){
 	//remove moving-right-to-buy class
-	currentCustomer.removeAttribute('class', 'moving-left-to-buy');
-	currentCustomer.src = "./img/buyTacoLeft.png";
+	//currentCustomer.removeAttribute('class', 'moving-left-to-buy');
+	currentCustomer.src = "./img/stillLeft.png";
+	//document.querySelector('#taco-truck-scene').appendChild(currentCustomer);
 	currentCustomer.setAttribute('class', 'stillBuyingLeft')
-	//Also display a pop up diallog bubble
+	//Also display a pop up dialog bubble
 	setTimeout(function(){
 		walkAwayWithTacoLeft(currentCustomer)}, 2000);
 }

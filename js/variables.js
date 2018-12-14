@@ -19,8 +19,8 @@ let startingRep = 100;
 let conversion;
 let dayCounter;
 let openingCountdown;
-let customerImgRight;
-let customerImgLeft
+//let customerImgRight;
+//let customerImgLeft
 let noncustomerImgRight;
 let noncustomerImgLeft;
 let noncustomerRightArray = [];
@@ -28,7 +28,8 @@ let noncustomerLeftArray = [];
 let customerRightArray = [];
 let customerLeftArray = [];
 let newCust;
-
+let passersbyArray = [];
+let newPasserby = {};
 
 
 //Food prices

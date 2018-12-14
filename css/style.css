@@ -65,7 +65,7 @@ button {
 }
 
 .moving-right-to-buy {
-	animation-name: buyLeft;
+	animation-name: buyRight;
 	animation-duration: 3s;
 	position: absolute;
 	z-index: 2;
@@ -97,14 +97,32 @@ button {
 	/*left: 280px;*/
 }
 
+@keyframes stillLeft {
+	from{right: 300px;}
+	to{right: 300px;}
+}
+
 .stillBuyingLeft {
+	animation-name: stillLeft;
+	animation-duration: 2s;
 	top: 250px;
 	right: 300px;
+	z-index: 2;
+	position: absolute;
+}
+
+@keyframes stillRight {
+	from{left: 280px;}
+	to{left:280px;}
 }
 
 .stillBuyingRight {
+	animation-name: stillRight;
+	animation-duration: 2s;
 	top: 250px;
 	left: 280px;
+	z-index: 2;
+	position: absolute;
 }
 #taco-truck-scene {
 	position: relative;
@@ -255,4 +273,24 @@ button {
 	background-color: cyan;
 	height: 10px;
 	width: 700px;
+}
+
+.bubble-text {
+	margin: auto;
+	text-align: center;
+	font-size: 12px;
+}
+
+#order-steak-dialog {
+	height: 100px;
+	width: 100px;
+	background-image: url("../img/dialog-bubble.png");
+	background-size: 100%;
+	display: flex; 
+	position: absolute;
+	right: 350px;
+	top: 150px;
+	z-index: -2;
+	text-align: center;
+	align-items: center;
 }
