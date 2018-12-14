@@ -19,7 +19,7 @@ let startingRep = 100;
 let conversion;
 let dayCounter;
 let openingCountdown;
-
+let stopCustomers;
 let noncustomerRightArray = [];
 let noncustomerLeftArray = [];
 let customerRightArray = [];

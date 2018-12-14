@@ -264,6 +264,10 @@ function deleteCustomer(currentCustomer){
 }
 
 function endOfDay() {
+	// allCustomers = document.querySelectorAll('.customer');
+	// for (var i = 0; i<allCustomers.length; i++) {
+	// 	allCustomers[i].className = '';
+	// };
 	disableButtons();
 	console.log(truckOpen);
 	calcConv();
@@ -394,10 +398,16 @@ function move() {
   function progress() {
   	//When the bar is 100% filled, stop the timer
     if (width >= 100) {
+    	chanceToBuy = 0;
     	truckOpen = false;
     	clearInterval(tick);
     	endOfDay();
+    } else if (width >= 90) {
+    	chanceToBuy = 0;
+    	width++;
+    	bar.style.width = width + '%';
     } else {
+      stopCustomer = false;
       width++; 
       bar.style.width = width + '%';
     }
