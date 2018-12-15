@@ -105,8 +105,8 @@ button {
 .stillBuyingLeft {
 	animation-name: stillLeft;
 	animation-duration: 2s;
-	top: 250px;
-	right: 300px;
+	top: 185px !important;
+	right: 305px !important;
 	z-index: 2;
 	position: absolute;
 }
@@ -119,8 +119,8 @@ button {
 .stillBuyingRight {
 	animation-name: stillRight;
 	animation-duration: 2s;
-	top: 250px;
-	left: 280px;
+	top: 175px !important;
+	left: 280px !important;
 	z-index: 2;
 	position: absolute;
 }
