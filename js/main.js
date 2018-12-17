@@ -7,7 +7,7 @@ function addStartSplash() {
 	var startSplash = document.createElement("div");
 	startSplash.setAttribute("class", "start-button" );
 	// Add some text
-	startSplash.appendChild( document.createTextNode("Welcome to Indy's Taco Truck. In order to run a successful food truck, you'll need to buy all of your ingredients to make yummy tacos for people to enjoy. The more tacos you sell, the more money you'll make and the better reputation you'll have. Make sure to stock up on ingredients before customers show up. Click here to begin!") );
+	startSplash.appendChild( document.createTextNode("Welcome to Indy's Taco Truck. In order to run a successful food truck, you'll need to buy all of your ingredients to make yummy tacos for people to enjoy. The more tacos you sell, the more money you'll make and the better reputation you'll have. Make sure to stock up on ingredients before customers show up. Make sure to keep tortillas and salsa in stock or you can't make any tacos! Click here to begin!") );
 	// Add it to the document body
 	document.querySelector('#taco-truck-scene').appendChild(startSplash);
 	startSplash.addEventListener('click', startNewGame)
