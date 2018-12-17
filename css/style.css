@@ -81,7 +81,6 @@ button {
 	animation-duration: 3s;
 	position: absolute;
 	z-index: 2;
-	/*right: 300px;*/
 }
 
 @keyframes withTacoRight {
@@ -94,7 +93,6 @@ button {
 	animation-duration: 3s;
 	position: absolute;
 	z-index: 2;
-	/*left: 280px;*/
 }
 
 @keyframes stillLeft {
@@ -105,8 +103,8 @@ button {
 .stillBuyingLeft {
 	animation-name: stillLeft;
 	animation-duration: 2s;
-	top: 185px !important;
-	right: 305px !important;
+	top: 187px !important;
+	right: 300px !important;
 	z-index: 2;
 	position: absolute;
 }
@@ -119,8 +117,8 @@ button {
 .stillBuyingRight {
 	animation-name: stillRight;
 	animation-duration: 2s;
-	top: 175px !important;
-	left: 280px !important;
+	top: 180px !important;
+	left: 270px !important;
 	z-index: 2;
 	position: absolute;
 }
@@ -273,24 +271,4 @@ button {
 	background-color: cyan;
 	height: 10px;
 	width: 700px;
-}
-
-.bubble-text {
-	margin: auto;
-	text-align: center;
-	font-size: 12px;
-}
-
-#speech-bubble {
-	height: 100px;
-	width: 100px;
-	background-image: url("../img/dialog-bubble.png");
-	background-size: 100%;
-	display: flex; 
-	position: absolute;
-	right: 350px;
-	top: 150px;
-	z-index: 2;
-	text-align: center;
-	align-items: center;
 }

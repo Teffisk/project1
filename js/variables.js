@@ -1,7 +1,7 @@
 //Global variables
 let startSplash;
 let account;
-let startingAccount = 100;
+let startingAccount = 60;
 let truckOpen;
 let customer;
 let chanceToBuy;
@@ -13,9 +13,9 @@ let totalOrders;
 let reputation;
 let passersby;
 let customerBuyDelay = 2000;
-let newPassersbyInterval = 3000;
+let newPassersbyInterval = 1000;
 let startDayDelay = 5000;
-let startingRep = 100;
+let startingRep = 50;
 let conversion;
 let dayCounter;
 let openingCountdown;
@@ -26,7 +26,7 @@ let customerRightArray = [];
 let customerLeftArray = [];
 let newCust;
 let passersbyArray = [];
-let speechBubble;
+
 
 
 //Food prices
@@ -36,11 +36,11 @@ let avocadoTacoPrice;
 let score = (conversion-.375) + ((chickenOrders*chickenTacoPrice)+(steakOrders*steakTacoPrice)+(avocadoOrders*avocadoTacoPrice))+(account-startingAccount);
 
 //Invetory units
-let steakPack = 12;
-let salsaPack = 30;
-let avocadoPack = 8;
-let chickenPack = 10;
-let tortillaPack = 40;
+let steakPack = 6;
+let salsaPack = 15;
+let avocadoPack = 4;
+let chickenPack = 5;
+let tortillaPack = 20;
 
 //Inventory costs
 let tortillaCost = 5;
