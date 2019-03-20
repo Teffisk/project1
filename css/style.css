@@ -306,6 +306,12 @@ button {
   height: 38px;
   width: 150px;
   font-size: 24px;
+  line-height: 30px;
+}
+
+.buy-button:hover {
+  color: #00aedb;
+  background-color: #eee;
 }
 
 .cost-per-pound,
