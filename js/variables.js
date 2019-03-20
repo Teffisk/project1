@@ -1,17 +1,14 @@
 //Global variables
 let startSplash;
-let account;
+let account = 0;
 let startingAccount = 60;
 let truckOpen;
 let customer;
 let chanceToBuy;
 let tacoChoice;
-let chickenOrders;
-let steakOrders;
-let avocadoOrders;
-let totalOrders;
-let reputation;
-let passersby;
+let totalOrders = 0;
+let reputation = 0;
+let passersby = 0;
 let customerBuyDelay = 2000;
 let newPassersbyInterval = 1000;
 let startDayDelay = 5000;
@@ -27,32 +24,60 @@ let customerLeftArray = [];
 let newCust;
 let passersbyArray = [];
 
-
-
 //Food prices
-let chickenTacoPrice;
-let steakTacoPrice;
-let avocadoTacoPrice;
-let score = (conversion-.375) + ((chickenOrders*chickenTacoPrice)+(steakOrders*steakTacoPrice)+(avocadoOrders*avocadoTacoPrice))+(account-startingAccount);
+let chicken = {
+  price: 3,
+  pack: 6,
+  cost: 10,
+  inv: 0,
+  orders: 0,
+  name: "chicken"
+};
+let steak = {
+  price: 3,
+  pack: 6,
+  cost: 12,
+  inv: 0,
+  orders: 0,
+  name: "steak"
+};
+let avocado = {
+  price: 3,
+  pack: 4,
+  cost: 10,
+  inv: 0,
+  orders: 0,
+  name: "avocado"
+};
 
-//Invetory units
-let steakPack = 6;
-let salsaPack = 15;
-let avocadoPack = 4;
-let chickenPack = 5;
-let tortillaPack = 20;
+let tortillas = {
+  price: 0,
+  pack: 20,
+  cost: 5,
+  inv: 0,
+  orders: 0,
+  name: "tortillas"
+};
 
-//Inventory costs
-let tortillaCost = 5;
-let salsaCost = 20;
-let chickenCost = 10;
-let steakCost = 12;
-let avocadoCost = 10;
+let salsa = {
+  price: 0,
+  pack: 15,
+  cost: 12,
+  inv: 0,
+  orders: 0,
+  name: "salsa"
+};
 
-//Inventory
-let chickenInv;
-let steakInv;
-let avocadoInv;
-let salsaInv;
-let tortillaInv;
+let score =
+  conversion -
+  0.375 +
+  (chicken.orders * chicken.price +
+    steak.orders * steak.price +
+    avocado.orders * avocado.price) +
+  (account - startingAccount);
 
+let buyChickenButton;
+let buySteakButton;
+let buyAvocadoButton;
+let buyTortillasButton;
+let buySalsaButton;

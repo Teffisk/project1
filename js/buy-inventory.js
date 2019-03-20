@@ -1,50 +1,49 @@
 function buyMoreChicken() {
-	if (account-chickenCost < 0) {
-		console.log("Oh no, you don't have enough money to buy that.")
-	} else {
-	chickenInv = chickenInv + chickenPack;
-	account = account - chickenCost;
-	updateTheDom();
-	}
+  if (account - chicken.cost < 0) {
+    console.log("Oh no, you don't have enough money to buy that.");
+  } else {
+    chicken.inv += chicken.pack;
+    account = account - chicken.cost;
+    updateTheDom();
+  }
 }
 
-function buyMoreSteak(){
-	if (account-steakCost < 0) {
-		console.log("Oh no, you don't have enough money to buy that.")
-	} else {
-	steakInv = steakInv + steakPack;
-	account = account - steakCost;
-	updateTheDom();
-	}
+function buyMoreSteak() {
+  if (account - steak.cost < 0) {
+    console.log("Oh no, you don't have enough money to buy that.");
+  } else {
+    steak.inv += steak.pack;
+    account = account - steak.cost;
+    updateTheDom();
+  }
 }
 
-function buyMoreAvocado() {
-	if (account-avocadoCost < 0) {
-		console.log("Oh no, you don't have enough money to buy that.")
-	} else {
-	avocadoInv = avocadoInv + avocadoPack;
-	account = account - avocadoCost;
-	updateTheDom();
-	}
+function buyMoreAvocados() {
+  if (account - avocado.cost < 0) {
+    console.log("Oh no, you don't have enough money to buy that.");
+  } else {
+    avocado.inv = avocado.inv + avocado.pack;
+    account = account - avocado.cost;
+    updateTheDom();
+  }
 }
 
 function buyMoreTortillas() {
-	if (account-tortillaCost < 0) {
-		console.log("Oh no, you don't have enough money to buy that.")
-	} else {
-	tortillaInv = tortillaInv + tortillaPack;
-	account = account - tortillaCost;
-	updateTheDom();
-	}
+  if (account - tortillas.cost < 0) {
+    console.log("Oh no, you don't have enough money to buy that.");
+  } else {
+    tortillas.inv = tortillas.inv + tortillas.pack;
+    account = account - tortillas.cost;
+    updateTheDom();
+  }
 }
 
 function buyMoreSalsa() {
-	if (account-salsaCost < 0) {
-		console.log("Oh no, you don't have enough money to buy that.")
-	} else {
-	salsaInv = salsaInv + salsaPack;
-	account = account - salsaCost;
-	updateTheDom();
-	}
+  if (account - salsa.cost < 0) {
+    console.log("Oh no, you don't have enough money to buy that.");
+  } else {
+    salsa.inv = salsa.inv + salsa.pack;
+    account = account - salsa.cost;
+    updateTheDom();
+  }
 }
-

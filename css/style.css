@@ -1,274 +1,341 @@
 body {
-	background: black;
-	margin: 0;
+  background: #00aedb;
+  margin: 0;
+  font-family: "Baloo Chettan", cursive;
+  color: #ffc425;
+}
+
+.buttons {
+  background-color: white;
+  display: inline-block;
+  width: 49%;
+}
+
+.info {
+  text-align: center;
+  background-color: white;
+  display: inline-block;
+  width: 49%;
 }
 
 h1 {
-	color: blue;
-	text-align: center;
-	font-family: 'Roboto', sans-serif;
+  color: #ffc425;
+  text-align: center;
+  font-size: 72px;
+  margin: 0 auto;
 }
 
 button {
-	width: 120px;
+  width: 120px;
 }
 
 .customer {
-	position: absolute;
-	z-index: 2;
+  position: absolute;
+  z-index: 2;
 }
 
 .noncustomer {
-	position: absolute;
-	z-index: 2;
+  position: absolute;
+  z-index: 2;
 }
 
 @keyframes strollLeft {
-	from {right: -120px;}
-	to {right: 850px;}
+  from {
+    right: -120px;
+  }
+  to {
+    right: 850px;
+  }
 }
 
 .moving-left-passerby {
-	animation-name: strollLeft;
-	animation-duration: 5s;
-	position: absolute;
-	z-index: 2;
+  animation-name: strollLeft;
+  animation-duration: 5s;
+  position: absolute;
+  z-index: 2;
 }
 
 @keyframes strollRight {
-	from {left: -120px;}
-	to {left: 850px;}
+  from {
+    left: -120px;
+  }
+  to {
+    left: 850px;
+  }
 }
 
 .moving-right-passerby {
-	animation-name: strollRight;
-	animation-duration: 5s;
-	position: absolute;
-	z-index: 2;
+  animation-name: strollRight;
+  animation-duration: 5s;
+  position: absolute;
+  z-index: 2;
 }
 
 @keyframes buyLeft {
-	from {right: -120px;}
-	to {right: 300px;}
+  from {
+    right: -120px;
+  }
+  to {
+    right: 300px;
+  }
 }
 
 .moving-left-to-buy {
-	animation-name: buyLeft;
-	animation-duration: 3s;
-	position: absolute;
-	z-index: 2;
+  animation-name: buyLeft;
+  animation-duration: 3s;
+  position: absolute;
+  z-index: 2;
 }
 
 @keyframes buyRight {
-	from {left: -120px;}
-	to {left: 280px;}
+  from {
+    left: -120px;
+  }
+  to {
+    left: 280px;
+  }
 }
 
 .moving-right-to-buy {
-	animation-name: buyRight;
-	animation-duration: 3s;
-	position: absolute;
-	z-index: 2;
+  animation-name: buyRight;
+  animation-duration: 3s;
+  position: absolute;
+  z-index: 2;
 }
 
 @keyframes withTacoLeft {
-	from {right: 300px;}
-	to {right: 850px;}
+  from {
+    right: 300px;
+  }
+  to {
+    right: 850px;
+  }
 }
 
 .moving-left-with-taco {
-	animation-name: withTacoLeft;
-	animation-duration: 3s;
-	position: absolute;
-	z-index: 2;
+  animation-name: withTacoLeft;
+  animation-duration: 3s;
+  position: absolute;
+  z-index: 2;
 }
 
 @keyframes withTacoRight {
-	from {left: 280px;}
-	to {left: 850px;}
+  from {
+    left: 280px;
+  }
+  to {
+    left: 850px;
+  }
 }
 
 .moving-right-with-taco {
-	animation-name: withTacoRight;
-	animation-duration: 3s;
-	position: absolute;
-	z-index: 2;
+  animation-name: withTacoRight;
+  animation-duration: 3s;
+  position: absolute;
+  z-index: 2;
 }
 
 @keyframes stillLeft {
-	from{right: 300px;}
-	to{right: 300px;}
+  from {
+    right: 300px;
+  }
+  to {
+    right: 300px;
+  }
 }
 
 .stillBuyingLeft {
-	animation-name: stillLeft;
-	animation-duration: 2s;
-	top: 187px !important;
-	right: 300px !important;
-	z-index: 2;
-	position: absolute;
+  animation-name: stillLeft;
+  animation-duration: 2s;
+  top: 187px !important;
+  right: 300px !important;
+  z-index: 2;
+  position: absolute;
 }
 
 @keyframes stillRight {
-	from{left: 280px;}
-	to{left:280px;}
+  from {
+    left: 280px;
+  }
+  to {
+    left: 280px;
+  }
 }
 
 .stillBuyingRight {
-	animation-name: stillRight;
-	animation-duration: 2s;
-	top: 180px !important;
-	left: 270px !important;
-	z-index: 2;
-	position: absolute;
+  animation-name: stillRight;
+  animation-duration: 2s;
+  top: 180px !important;
+  left: 270px !important;
+  z-index: 2;
+  position: absolute;
 }
 #taco-truck-scene {
-	position: relative;
-	font-family: 'Roboto', sans-serif;
-	background-image: url("../img/background.jpg");
-	background-size: 90%;
-	border: 5px solid black;
-	height: 400px;
-	width: 800px;
-	margin: 0 auto;
-	z-index: 1;
+  position: relative;
+  background-image: url("../img/background.jpg");
+  background-size: 90%;
+  border: 5px solid#d11141;
+  height: 400px;
+  width: 800px;
+  margin: 0 auto;
+  z-index: 1;
 }
 
 #frame {
-	width: 1250px;
-	margin: 0 auto;
+  width: 1250px;
+  margin: 0 auto;
 }
 
-#left-border, #right-border {
-	position: relative;
-	background: black;
-	width: 200px;
-	height: 500px;
-	margin: 0;
-	z-index: 3;
-	display: inline-block;
+#left-border,
+#right-border {
+  position: relative;
+  background: #00aedb;
+  width: 200px;
+  height: 410px;
+  top: -406px;
+  margin: 0;
+  z-index: 3;
+  display: inline-block;
 }
 
 #left-border {
-	margin-right: -9px;
-	border-right: 5px solid black;
-	margin-left: auto;
+  margin-right: -8px;
+  border-right: 5px solid#d11141;
+  margin-left: auto;
 }
 
 #right-border {
-	margin-left: -9px;
-	border-left: 5px solid black;
-	margin-right: auto;
+  margin-left: -9px;
+  border-left: 5px solid #d11141;
+  margin-right: auto;
 }
 
 #game-container {
-	display:inline-block;
+  display: inline-block;
 }
 
 #day-display {
-	text-align: center;
+  text-align: center;
 }
 
 #displaycountdown {
-	display: fixed;
-	bottom: 5px;
-	text-align: center;
-
+  display: fixed;
+  bottom: 5px;
+  text-align: center;
 }
 
 .controls-container {
-	font-family: 'Roboto', sans-serif;
-	display: flex;
-  	flex-wrap: nowrap;
-	text-align: center;
-	margin: 0 auto;
-	width: 810px;
-	background: #eee;
+  font-size: 24px;
+  /* font-family: "Roboto", sans-serif; */
+  display: flex;
+  flex-wrap: nowrap;
+  text-align: center;
+  margin: 0 auto;
+  width: 810px;
+  background: #00b159;
+  min-height: 20vh;
 }
 
-.start-button, .end-of-day {
-	text-align: center;
-	color: white;
-	height: 200px;
-	width: 350px;
-	margin: 0 auto;
-	background-color: green;
-	padding: 15px;
-	border: 5px solid white;
-	border-radius: 10px;
-	margin-top: 20px;
-	z-index: 1;
+.start-button,
+.end-of-day {
+  text-align: center;
+  /* font-family: "Baloo Chettan", cursive; */
+  color: #ffc425;
+  height: 200px;
+  width: 350px;
+  margin: 0 auto;
+  background-color: #00b159;
+  padding: 15px;
+  border: 5px solid #d11141;
+  border-radius: 10px;
+  margin-top: 20px;
+  z-index: 1;
 }
 
-.prices, .customer-orders, .inventory {
-	text-align: center;
-	width: 33.333%;
-	padding: 0;
-	height: 140px;
-	display: inline-block;
+.customer-orders,
+.inventory {
+  text-align: center;
+  width: 50%;
+  padding: 0;
+  display: inline-block;
 }
 
 .prices {
-	border-left: 5px solid black;
-	line-height: 30px;
+  border-left: 5px solid #d11141;
+  line-height: 30px;
 }
 
 .customer-orders {
-	border-right: 5px solid black;
-	border-left: 5px solid black;
-	line-height: 20px
+  border-right: 5px solid #d11141;
+  border-left: 5px solid #d11141;
+  /* line-height: 20px; */
 }
 
 .inventory {
-	border-right: 5px solid black;
-	line-height: 28px;
+  border-right: 5px solid #d11141;
+  /* line-height: 28px; */
 }
 
 #buy-ingredients {
-	font-family: 'Roboto', sans-serif;
-	display: flex;
-  	flex-wrap: nowrap;
-	text-align: center;
-	margin: 0 auto;
-	width: 810px;
-	background: #eee; 
+  min-height: 200px;
+  font-size: 24px;
+  /* align-content: center; */
+  flex-wrap: nowrap;
+  text-align: right;
+  margin: 0 auto;
+  width: 800px;
+  background: #00b159;
+  border: 5px solid #d11141;
 }
 
-.cost-per-pound, .servings-per-pound, .buy-buttons {
-	text-align: center;
-	width: 33.333%;
-	padding: 0;
-	height: 100px;
-	display: inline-block;
-	border-top: 5px solid black;
-	border-bottom: 5px solid black;
-	line-height: 19px;
+#buy-ingredients div {
+  margin-right: 25%;
 }
 
-.cost-per-pound{ 
-	border-left: 5px solid black;
+.underlined {
+  text-decoration: underline;
+}
+
+.buy-button {
+  border: 3px solid #ffc425;
+  border-radius: 2px;
+  font-family: "Baloo Chettan", cursive;
+  color: #ffc425;
+  background-color: #00aedb;
+  min-height: 30px;
+  font-size: 14px;
+}
+
+.cost-per-pound,
+.servings-per-pound {
+  text-align: center;
+  padding: 0;
+  height: 200px;
+  display: inline-block;
+  border-top: 5px solid #d11141;
+  border-bottom: 5px solid #d11141;
+  line-height: 19px;
+}
+
+.cost-per-pound {
+  border-left: 5px solid #d11141;
 }
 
 .servings-per-pound {
-	border-left: 5px solid black;
-	border-right: 5px solid black;
-}
-
-.buy-buttons {
-	border-right: 5px solid black;
-	align-items: center; 
+  border-left: 5px solid #d11141;
+  border-right: 5px solid #d11141;
 }
 
 #day-loading-bar {
-	border: 2px solid black;
-	height: 10px;
-	width: 700px;
-	margin: 0 auto;
-	margin-top: 10px;
+  border: 2px solid #ddd;
+  height: 10px;
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 10px;
 }
 
 #percent-progress {
-	background-color: cyan;
-	height: 10px;
-	width: 700px;
+  background-color: #00b159;
+  height: 10px;
+  width: 700px;
 }
