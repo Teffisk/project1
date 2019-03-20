@@ -339,3 +339,16 @@ button {
   height: 10px;
   width: 700px;
 }
+
+/* Mobile CSS Settings!!!! */
+
+@media only screen and (max-width: 800px) {
+  #left-border,
+  #right-border {
+    display: none;
+  }
+
+  #frame {
+    width: 100vw !important;
+  }
+}
