@@ -351,13 +351,20 @@ button {
 /* Mobile CSS Settings!!!! */
 
 @media only screen and (max-width: 800px) {
+  #game-title {
+    color: white;
+  }
   #left-border,
   #right-border {
     display: none;
   }
 
   #frame {
-    width: 100vw !important;
+    width: 100vw;
+  }
+
+  .inventory {
+    line-height: 2vh;
   }
 
   #buy-ingredients {
@@ -379,3 +386,6 @@ button {
     line-height: 6vh;
   }
 }
+/* @-ms-viewport {
+  width: device-width;
+} */
