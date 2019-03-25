@@ -278,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
   }
 
   function walkAwayWithTacoRight(currentCustomer) {
-    currentCustomer.image.removeAttribute("class", "stillBuyingRight");
+    currentCustomer.image.removeAttribute("class", ".stillBuyingRight");
     currentCustomer.image.setAttribute("class", "moving-right-with-taco");
     currentCustomer.image.src = "./img/withTacoRight.gif";
     setTimeout(function() {
@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
   }
 
   function walkAwayWithoutTacoRight(currentCustomer) {
-    currentCustomer.image.removeAttribute("class", "stillBuyingRight");
+    currentCustomer.image.removeAttribute("class", ".stillBuyingRight");
     currentCustomer.image.setAttribute("class", "moving-right-with-taco");
     currentCustomer.image.src = "./img/huskieRight.gif";
     setTimeout(function() {
@@ -336,7 +336,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
   }
 
   function walkAwayWithTacoLeft(currentCustomer) {
-    currentCustomer.image.removeAttribute("class", "stillBuyingLeft");
+    currentCustomer.image.removeAttribute("class", ".stillBuyingLeft");
     currentCustomer.image.setAttribute("class", "moving-left-with-taco");
     currentCustomer.image.src = "./img/withTacoLeft.gif";
     setTimeout(function() {
@@ -345,7 +345,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
   }
 
   function walkAwayWithoutTacoLeft(currentCustomer) {
-    currentCustomer.image.removeAttribute("class", "stillBuyingLeft");
+    currentCustomer.image.removeAttribute("class", ".stillBuyingLeft");
     currentCustomer.image.setAttribute("class", "moving-left-with-taco");
     currentCustomer.image.src = "./img/huskieLeft.gif";
     setTimeout(function() {
